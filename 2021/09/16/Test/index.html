@@ -13,7 +13,7 @@
 
 
 
-<title>Hello World | Hexo</title>
+<title>Test | Hexo</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">Test</h1>
             
                 <div class="post-meta">
                     
@@ -202,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 15, 2021&nbsp;&nbsp;22:31:15</a>
+                        Date: <a href="#">September 16, 2021&nbsp;&nbsp;1:50:09</a>
                         </span>
                     
                     
@@ -211,20 +211,121 @@
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="head">
+        <h1>泛型数组列表 </h1>
+        <div>
+            在许多程序设计语言中， 特别是在C++语言中， 必须在编译时就确定整个数组的大小.在 Java 中 ， 解决这个问题最简单的方法是使用 Java 中另外一个被称为 Array List 的类。ArrayList 是一个采用类型参数 (type parameter) 的泛型类 (generic class) 。 为了指定数 组列表保存的元素对象类型， 需要用一对尖括号将类名括起来加在后面，(“菱形” 语法) 
+        </div>
+        <h1></h1>
+        <div>
+            使用:
+            <div class="center">
+                Java SE7 中， 可以省去右边的类型参数：
+            </div>
+            <div class="code">
+                Arraylist<Employee> staff= new Arraylist<>();
+            </div>
+            <div>
+                可以结合 new 操作符使用菱形 语法。编译器会检查新值是什么。 如果赋值给一个变址，或传递到某个方法， 或者从某个方 法返回 ， 编译器会检查这个变报、 参数或方法的泛型类型， 然后将这个类型放在＜＞中.使用 add 方法可以将元素添加到数组列表中。
+            </div>
+            </br>
+            <div>
+                数组列表管理着对象引用的一个内部数组。如果调用 add 且内部数组已经满了， 数组列表就将自动地创建 一个更大的数组， 并将所有的对象从较小的数组中拷贝到较大的数组中。也能初始分配一个容量：
+            </div>
+            <div class="code">
+                staff.ensureCapacity(lOO);
+            </div>
+            <div>
+                另外， 还可以把初始容量传递给 ArrayList 构造器：
+            </div>
+            <div class="code"> 
+                Arraylist<Employee> staff= new Arraylist<>(lOO); 
+            </div>
+            <ol>
+                <li class="duibi">
+                    如果为数组分配 100 个元素 的存储空间， 数组就有 100 个空位置可以使用
+                </li>
+                <li class="duibi">
+                    容量为 100 个元素的数组列表只是拥有保存 100 个元素的潜力（实际上， 重新分配空间的话， 将会超过 100), 但是在最初，甚至完成初始化构造之后， 数组列表根本就不含有任何元素。size 方法将返回数组列表中包含的实际元素数目
+                </li>
+            </ol>
+            <div>
+                一旦能够确认数组列表的大小不再发生变化， 就可以调用 trimToSize 方法。 这个方法将 存储区域的大小调整为当前元素数量所需要的存储空间数目。 垃圾回收器将回收多余的存储 空间。一旦整理了数组列表的大小， 添加新元素就需要花时间再次移动存储块，
+            </div>
+            <div class="zhushi">
+                注释： Java SE 5.0以前的版本没有提供泛型类， 而是有一个 ArrayList 类， 其中保存类型为 Object 的元素， 它是 “ 自适应大小 ” 的集合。 如果一定要使用老版本的 Java, 则需要 将所有的后缀<... >删掉。  
+            </div>
+            <h1>C++注释</h1>
+            <div>
+                ArrayList 类似于 C开的 vector 模板。 ArrayList 与 vector 都是泛型类型。 但是 C++ 的 vector 模板为了便于访问元素重栽了［］运算符。 由于 Java 没有运算符重栽， 所以必须调用显式的方法。 此外， C++向量是值拷贝。 如果a和 b 是两个向量， 赋值 操作 a=b 将会构造一个与b 长度相同的新向量 a, 并将所有的元素由b 拷贝到 a, 而在 Java 中， 这条赋值语句的操作结果是让 a 和b 引用同一个数组列表。
+            </div>
+            <h1>访问数组列表元素</h1>
+            <div> 
+                使用 get 和 set 方法实现访问或改变数组元素的操作</br>
+                为了插入一个新元素，位于n之后的所有元素都要向后移动一个位置,如果插入新元素后，数组列表的大小超过了容量，数组列表就会被重新分配存储空间。
+            </div>
+            <div class="zhushi">
+                没有泛型类时，原始的ArrayList类提供的get方法别无选择只能返回Object,因此，get方法的调用者必须对返回值进行类型转换：
+                <div class="code">
+                    Employee e = (E1ployee) staff .get(i);
+                </div>
+                原始的ArrayList存在一定的危险性。它的add和set方法允许接受任意类型的对象。编译不会给出任何警告，只有在检索对象并试图对它进行类型转换时，才会发现有问题。
+            </div>
+            <div>
+                使用toArray方法将数组元素拷贝到一个数组去
+                <div class="code">
+                    X[] a= new X[list.size()]; </br>1ist.toArray(a); 
+                </div>
+                删除元素用 remove方法.
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+        .center{
+         text-align:center;
+    }
+    .code{
+      text-align:center;
+      color:orange;
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<pre><code>&#125;
+.zhushi&#123;
+    color:black;
+    font-size:120%;
+    font-family:&quot;Times New Roman&quot;,Georgia,Serif;
+&#125;
+div&#123;
+    font-family:Georgia;
+    font-size:125%;
+    color:black;
+    opacity:1
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+&#125;
+.duibi&#123;
+    font-size:100%;
+     color:gray;
+&#125;
+h1&#123;
+     color:#00Bfff;
+      opacity:0.85;
+&#125;
+.head&#123;
+    padding-left:20%;
+    padding-right: 20%;
+&#125;
+</code></pre>
+<p></style></p>
+</html>
         </div>
 
         
@@ -238,7 +339,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2021/09/15/hello-world/">http://example.com/2021/09/15/hello-world/</a></span>
+                        <span><a href="http://example.com/2021/09/16/Test/">http://example.com/2021/09/16/Test/</a></span>
                     </p>
                 
                 
@@ -271,8 +372,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/09/16/Test/">Test</a>
             
+            <a class="next" rel="next" href="/2021/09/15/hello-world/">Hello World</a>
             
         </section>
 
