@@ -13,7 +13,7 @@
 
 
 
-<title>Test2 | Hexo</title>
+<title>Hexo</title>
 
 
 
@@ -127,11 +127,73 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Test2</h1>
+            <h1 class="post-title"></h1>
             
                 <div class="post-meta">
                     
@@ -149,7 +211,136 @@
         </header>
 
         <div class="post-content">
-            
+            <div>
+    <h1>����</h1>
+    <div>
+        �����(reflection library)�ṩ��һ̬����Java����ĳ��� ����ܱ�������Ӧ����JavaBeans�У� ����Java�������ϵ�ṹ,ʹ�÷���Java����֧��Visual Basic�û�ϰ��ʹ�õĹ��ߡ� �ر�������ƻ���������������ʱ�ܹ����ٵ�Ӧ�ÿ������߶�̬�ز�ѯ���������������</br>�ܹ������������ĳ����Ϊ����(reflective)�� ������ƵĹ��ܼ���ǿ��
+    </div>
+    ������ƿ���������
+    <ul>
+        <li>������ʱ�������������</li>
+        <li>������ʱ�鿴����</li>
+        <li>ʵ��ͨ�õ������������</li>
+        <li>����Method���� ����������C++�еĺ���ָ�롣</li>
+    </ul>
+    ������һ�ֹ���ǿ���Ҹ��ӵĻ��ơ� ʹ��������Ҫ��Ա�ǹ��߹�����
+</div>
+<div>
+    <h1></h1>
+    <h2>Class��</h2>
+    <div style="font-size:110%;">
+         Class���ڳ��������ڼ䣬Java����ʱϵͳʼ��Ϊ���еĶ���ά��һ������Ϊ����ʱ�����ͱ�ʶ�� �����Ϣ������ÿ�������������ࡣ �������������ʱ������Ϣѡ����Ӧ�ķ���ִ�С�</br>
+        Ȼ���� ����ͨ��ר�ŵ�Java�������Щ��Ϣ�� ������Щ��Ϣ���౻��ΪClass, ������ֺ��������˻����� Object���е�getClass()�������᷵��һ��Class���͵�ʵ����
+        <div class="code center">
+            Employee e;</br>
+            Class cl=e.getClass();
+        </div>
+        ��ͬ�� �� Employee �����ʾ ���ض��Ĺ�Ա���� һ����һ��Class ���󽫱�ʾ ���� ��������ԡ� ��õ� Class ������ getName���������������������֡�
+        <div class="code center" style="font-size:100%;">
+           System.out.println(e.getClass().getName()+e.getName());
+        </div>
+        <div class="center" style="font-size:100%;">
+            ���e��һ����Ա,����ӡ</br>
+            Employee Harry Hacker
+        </div>
+         <div class="center"style="font-size:100%;" >
+            ���e��һ������,����ӡ</br>
+            Manager Harry Hacker
+        </div>
+        <div>
+            �������һ����� ��������Ҳ��Ϊ������һ����
+        </div>
+        <div class="code center" style="100%">
+            Random generator = new Random() ; </br>
+            Class cl = generator.getClass(); </br>
+            String name= cl .getName(); //name is set to "java.util .Random" 
+        </div>
+        <div>
+            �����Ե��þ�̬���� forName ���������Ӧ�� Class ����
+        </div>
+        <div class="code center" style="font-size:100%">
+            String className = "java.util .Random";  </br>
+            Cl ass c 1 = Cl ass. forName(c 1 ass Name);  </br>
+        </div>
+        <div style="font-size:100%">
+            ��������������ַ����У� �����������иı䣬 �Ϳ���ʹ����������� ��Ȼ�� �������ֻ���� className ��������ӿ���ʱ���ܹ�ִ�С� ���� forName �������׳�һ��checkedexception (�Ѽ���쳣�� �� ���ۺ�ʱʹ����������� ��Ӧ���ṩ���쳣������ (exceptionhandler)��          
+        </div>
+        </br>
+        <div style="font-size:100%">
+            ��ʾ��������ʱ�� ���� main �������౻���ԡ� �������������Ҫ���ࡣ ��Щ�����ص�����Ҫ����������Ҫ���࣬ �Դ����ơ� ���ڸ����͵�Ӧ�ó�����˵�� �⽫�����ĺܶ�ʱ�����Ը��û������ٶȱȽϿ�Ļþ������� Ҫȷ������ main ��������û����ʽ�������������ࡣ ���ȣ� ��ʾһ����������Ȼ�� ͨ������ Class.forName �ֹ��ؼ����������ࡣ
+        </div>
+        <div class="center" style="font-size:100%">
+            һ��Class����ʵ���ϱ�ʾ����һ�����ͣ����������δ��һ����һ���ࡣ
+        </div>
+        <div style="font-size:100%" >
+            Class ��ʵ������һ �������ࡣ ���磬 Employee.class �������� Class<Employee>��û��˵����������ԭ���ǣ� �����Ѿ�����ĸ�����Ӹ��ӻ��ˡ� �ڴ����ʵ�������У� ���Ժ������Ͳ����� ��ʹ��ԭʼ�� Class �ࡣ�����Ϊÿ�����͹���һ�� Class ���� ��� �� �������ã������ʵ�����������Ƚ� �Ĳ�����
+        </div>
+    </div>
+    <div>
+        <h1></h1>
+        <h2 style="font-size:100%"> newlnstance()����������̬�ش���һ�����ʵ��</h2>
+        <div class="code center">
+            e. getClass().newInstance();
+        </div>
+        <div>
+            ������һ���� e ������ͬ�����͵�ʵ���� newInstance ��������Ĭ�ϵĹ��찻��û�в����Ĺ���������ʼ���´����Ķ���.��������û��Ĭ�ϵĹ������� �ͻ��׳�һ���쳣��
+        </div>
+        <div class="zhushi" style="font-size:89%;">
+            �� forNan1e �� newInstance �������ʹ�ã� ���Ը��ݴ洢���ַ����е���������һ������
+            <div class="code center" style="font-size:100%;">
+                String s = "java.util .Random"; </br>
+                Object m = Class. forName(s) .newlnstance(); 
+            </div>
+            �����Ҫ�����ַ�ʽ��ϣ�������ƴ�������Ĺ������ṩ���� �� �Ͳ�Ҫʹ������������䣬 ������ʹ�� Constructor ���е� newlnstance ������
+        </div>
+        <div style="font-size:;100%">
+            newlnstance ������Ӧ C++ �����⹹������ϰ���÷� Ȼ���� C++ �е����⹹��������һ���������ԣ� ��Ҫ��ר�ŵĿ�֧�֡� Class ���� C++ �е� type_info �����ƣ� getClass ������ C++ �е� typeid ������ȼۣ��� �� Java �е� Class �� C++�е� type_info �Ĺ���ǿ�� C++�е� type_info ֻ�����ַ�������ʽ��ʾһ�����͵����� �� �����ܴ����Ǹ����͵Ķ���
+        </div>
+    </div>
+</div>
+
+<style>
+    .center{
+         text-align:center;
+    }
+    .code{
+        margin-left:5%;
+        color:orange;
+       font-size:115%;
+    }
+    .code view{
+         font-size:inherit;
+         margin-right:2%;
+    }
+    .code div{
+        color:inherit;
+        font-size:inherit;
+        
+    }
+    }
+    .zhushi{
+         font-size:inherit;
+        color:gray;
+        font-size:90%;
+        font-family:"Times New Roman",Georgia,Serif;
+    }
+    div{
+        font-family:Georgia;
+        font-size:120%;
+        color:rgb(210,210,210);
+        opacity:0.92;
+        margin-top:1.5%;
+
+    }
+    .duibi{
+        font-size:100%;
+         color:gray;
+    }
+    h1{
+         color:#00Bfff;
+          opacity:0.85;
+    }
+</style>
         </div>
 
         
