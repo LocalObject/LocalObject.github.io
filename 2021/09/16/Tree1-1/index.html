@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiao chong">
+
+
+
+
+
+<title>Tree1-1 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">xiaochong</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">xiaochong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Tree1-1</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">xiao chong</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 16, 2021&nbsp;&nbsp;19:27:40</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Tree/">Tree</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <ol>
+<li><p>树的基本概念</p>
+<ol>
+<li><p>树的定义：树是N(N&gt;=0)个结点的有限集合，N=0时，称为空树，这是一种特殊情况。</p>
+<ul>
+<li><p>任意一颗非空树中应满足：</p>
+<ul>
+<li><p>有且仅有一个特定的称为根的结点</p>
+</li>
+<li><p>当N&gt;1时，其余结点可分为m(m&gt;0)个互不相交的有限集合T1，T2，…Tm,其中每个集合本身又是一棵树，</p>
+<p>并且称为根结点的<strong>子树</strong>。</p>
+</li>
+</ul>
+</li>
+<li><p>树的定义是递归的，是一种递归的数据结构。树作为一种逻辑结构，同时也是一种分层结构</p>
+<ul>
+<li><p>特点：</p>
+<ol>
+<li><p>除了树的根结点外都有且仅有一个前驱结点；因此在n个结点的树中有n-1条边</p>
+</li>
+<li><p>树中的所有结点可以有零个或多个后继结点</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>基本术语</p>
+<ol>
+<li><p>结点的度：树中该结点的子结点个数</p>
+</li>
+<li><p><strong>树的度</strong>：树中结点最大的度数</p>
+</li>
+<li><p>分支结点：度大于0的结点；</p>
+</li>
+<li><p>叶子结点： 度等于0的结点</p>
+</li>
+<li><p>结点的深度、高度和层次</p>
+<ul>
+<li><p>结点的层次从树根开始定义，根结点为第1层(有些是0层开始)，以此类推；</p>
+</li>
+<li><p>结点的深度：是从根结点开始自顶向下组成累加</p>
+</li>
+<li><p>结点的高度：是从叶子结点开始自底向上逐层累加</p>
+</li>
+<li><p>树的高度：是树中结点的最大层数</p>
+</li>
+</ul>
+</li>
+<li><p>路径和路径长度：</p>
+<ul>
+<li><p>树中两个结点的路径：是由这两个结点之间所经过的结点序列构成的；A和K中间经过结点B和结点E</p>
+</li>
+<li><p>而路径长度：是从路径上所经过的边的个数;结点A和结点K的路径长度为3</p>
+</li>
+</ul>
+</li>
+<li><p>森林：m(m&gt;=0)棵互不相交的树的集合<br><img src="/.com//1.png"></p>
+</li>
+</ol>
+</li>
+<li><p>树具有基本性质：</p>
+<ol>
+<li><p>$$树中的结点数等于所有结点的度数加1.$$</p>
+</li>
+<li><p>$$度为m的树中第i层上至多有 m^{i-1} 个结点$$</p>
+</li>
+<li><p>$$高度为h的m叉树至多有(m^h-1)/(m-1)个结点$$</p>
+</li>
+<li><p>$$具有n个结点的m叉树的最小高度为\ulcorner\log_m(n(m-1)+1)\urcorner$$</p>
+</li>
+</ol>
+</li>
+<li><p>扩展：</p>
+<ul>
+<li><p>要使具有n个结点、度为4的树的高度最大，那么就要使得每一层得结点数尽可能得少，除了最后一层，其余每层都为一个结点，最终树得高度为n-3.<br>  <img src="/.com//2.png"></p>
+</li>
+<li><p>要使得度为4、高度为h得总结的个数最少，那么满足以下两个条件：</p>
+<ol>
+<li><p>至少有一个结点有4个子结点</p>
+</li>
+<li><p>每一层结点数尽可能的少，结点个数为h+3</p>
+</li>
+</ol>
+</li>
+<li><p>要使得度为4、高度为h得总结的个数最多，则应使每一个非叶子结点的度均为4，即为<strong>满树</strong>； 总结点个数最多为：$1+4+4^2+…+4^{h-1}$<br>  <img src="/.com//3.png"></p>
+</li>
+<li><p>$$\small{设数中度为i(i=0、1、2、…、n)的结点数分别为N_i,数中结点总数为N，则N=分支数+1，而分支数又等于树中各结点的度之和，即}$$<br>  <strong>$$N=1+N_1+2N_2+……+nN_n=N_0+N_1+2N_2+……+nN_n$$</strong></p>
+</li>
+<li><p>要求含有n个结点的3叉树的最小高度，那么满足条件的一定是一颗完全3叉树:$$设含有n个结点的完全3叉树的高度为h，第h层至少有1个结点，至多有3^{h-1}个结点$$<br>则有：<br>  $$1+3^1+3^2+…+3^{h-2}&lt;n\leqq1+3^1+3^2+…+3^{h-1}$$<br>  $$即：(3^{h-1}-1)/2&lt;n\leqq(3^h-1)/2$$<br>  $$得： 3^{h-1}&lt;2n+1\leqq{3^h}$$<br>  $$也即： h&lt;\log_3(2n+1)+1,h\geqq{\log_3(2n+1)}$$<br>  $$由于h只能是正整数，h=\ulcorner\log_3(2n+1)\urcorner,故这样得3叉最少高度是\ulcorner\log_3(2n+1)\urcorner$$</p>
+<ul>
+<li>运用的是等比求和公式：<br>$$   S_n=\frac{a_1(1-q^n)}{1-q}(q\neq1) $$</li>
+</ul>
+</li>
+<li><p>$$根据“树中所有结点得度数加1等于结点数”得结论，有n=\sum_{i=0}^m {i\times n_i}=n_1+2n_2+3n_3+…+mn_m+1$$<br>$$又有: n=n_0+n_1+n_2+…+n_m$$<br>$$所以：n_0=(n_1+2n_2+3n_3+…+mn_m+1)-(n_1+n_2+…+n_m)=n_2+2n_3+…+(m-1)n_m+1=1+\sum_{i=2}^m {(i-1)n_i}$$</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>xiao chong</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2021/09/16/Tree1-1/">http://example.com/2021/09/16/Tree1-1/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Data-Structure/"># Data_Structure</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/09/16/Tree1-2/">Tree1-2</a>
+            
+            
+            <a class="next" rel="next" href="/2021/09/16/inherit5-3/">枚举类</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© xiao chong | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
