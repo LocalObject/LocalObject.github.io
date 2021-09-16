@@ -13,7 +13,7 @@
 
 
 
-<title>Hello World | Hexo</title>
+<title>inherit2-1 | Hexo</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">inherit2-1</h1>
             
                 <div class="post-meta">
                     
@@ -202,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 15, 2021&nbsp;&nbsp;22:31:15</a>
+                        Date: <a href="#">September 16, 2021&nbsp;&nbsp;10:23:38</a>
                         </span>
                     
                     
@@ -211,20 +211,55 @@
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+            <view>
+<h1>抽象类(abstract)</h1>
+<div>
+抽象方法充当着占位的角色 ， 它们的具体实现在子类中。扩展抽象类可以有两种选择。 一种是在抽象类中定义部分抽象类方法或不定义抽象类方法， 这样就必须将子类也标记为抽象类；另一种是定义全部的抽象方法， 这样一来， 子类就不是抽象的了。
+</div>
+</br>
+<div>
+类即使不含抽象方法， 也可以将类声明为抽象类。
+抽象类不能被实例化。 也就是说， 如果将一个类声明为 abstract, 就不能创建这个类的对象。 
+</br>
+可以定义一个抽象类的对象变量，但是它只能引用非抽象子类的对象
+</div>
+</br>
+<view>
+C++注释：在C++中， 有一种在尾部用=0标记的抽象方法， 称为纯虚函数， 例如：</br>
+<code>
+class Person// Ctt  </br>
+&#123;   </br>
+public: virtual string getDescription() = O </br>
+...     </br>
+&#125;
+</code>
+</br>
+只要有一个纯虚函数， 这个类就是抽象类。 在C++中，没有提供用于表示抽象类的 特殊关键字
+</view>
+<div>
+希望超类中的某些方法允许被子类访问， 或允许子类的方法访问超类的某个域。为此，需要将这些方法或域声明为protected。如果将超类Employee中的hireDay声明为proteced,而不是私有的，Manager中的方法就可以直接地访问它。
+不过， Manager类中的方法只能够访问Manager对象中的血eD ay 域， 而不能访问其他 Employee对象中的这个域。 这种限制有助于避免滥用受保护机制， 使得子类只能获得访问受 保护域的权利。
+</div>
+<div>
+在实际应用中，要谨慎使用protected属性。假设需要将设计的类提供给其他程序员使用，而在这个类中设置了一些受保护域，由于其他程序员可以由这个类再派生出新类，并访 问其中的受保护域。在这种情况下，如果需要对这个类的实现进行修改，就必须通知所有使用这个类的程序员。这违背了OOP提倡的数据封装原则。
+</div>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<div>受保护的方法更具有实际意义。如果需要限制某个方法的使用，就可以将它声明为protected。这表明子类（可能很熟悉祖先类）得到信任，可以正确地使用这个方法，而其他 类则不行。
+这种方法的一个最好的示例就是Object类中的clone方法
+</div>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<div>事实上，Java中的受保护部分对所有子类及同一个包中的所有其他类都可见，这与C++中的保护机制稍微有不同</div>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+<dvi>
+Java用于控制可见性的4个访问修饰符： </br>
+<view>
+仅对本类可见一一private。</br>
+    对所有类可见一public</br>
+    对本包和所有子类可见——protected。</br>
+对本包可见——默认（很遗憾）， 不需要修饰符
+</view>
+</div>
+</view>
         </div>
 
         
@@ -238,7 +273,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2021/09/15/hello-world/">http://example.com/2021/09/15/hello-world/</a></span>
+                        <span><a href="http://example.com/2021/09/16/inherit2-1/">http://example.com/2021/09/16/inherit2-1/</a></span>
                     </p>
                 
                 
@@ -271,8 +306,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/09/16/inherit1-1/">inherit1-1</a>
+                <a class="prev" rel="prev" href="/2021/09/16/inherit6-1/">inherit6-1</a>
             
+            
+            <a class="next" rel="next" href="/2021/09/16/inherit1-2/">inherit1-2</a>
             
         </section>
 

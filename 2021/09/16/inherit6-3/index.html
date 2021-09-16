@@ -13,7 +13,7 @@
 
 
 
-<title>Hello World | Hexo</title>
+<title>inherit6-3 | Hexo</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">inherit6-3</h1>
             
                 <div class="post-meta">
                     
@@ -202,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 15, 2021&nbsp;&nbsp;22:31:15</a>
+                        Date: <a href="#">September 16, 2021&nbsp;&nbsp;10:25:16</a>
                         </span>
                     
                     
@@ -211,20 +211,72 @@
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="GBK">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<body>
+    <h1>利用反射分析类的能力</h1>
+    <div>
+        <div>
+            在java.lang.reflect 包中有三个类 Field 、 Method 和 Constructor 分别用于描述类的域、 方法和构造器。 这三个类都有一个叫做 getName 的方法 ， 用来返回项目的名称。 Field 类有一 个getType方法， 用来返回描述域所屈类型的 Class 对象。 Method 和 Constructor 类有能够报告参数类型的方法， Method 类还有一个可以报告返回类型的方法。 这三个类还有一个叫做 getModifiers 的方法， 它将返同一个整型数值， 用不同的位开关描述 public 和 static 这样 的修饰符使用状况。 另外 ， 还可以利用 java.lang.reflect 包中的 Modifier 类的静态方法分析 getModifiers 返回的整型数值。 例如， 可以使用 Modifier 类中的 is Public、 is Private 或 isFinal 判断方法或构造器是否是 public 、 private 或 final 。 我们需要做的全部工作就是调用 Modifier 类的相应方法， 并对返回的整型数值进行分析， 另外 ， 还可以利用 Modifier.toString 方法将修饰符打印出来。
+        </div>
+        <div>   
+            Class 类中的 getFields 、 getMethods 和 getConstructors 方法将分别返回类提供的 public 域、 方法和构造器数组 ， 其中包括超类的公有成员。 Class 类的 getDeclareFields、 getDeclareMethods 和 getDeclaredConstructors 方法将分别返回类中声明的全部域、方法和构造器， 其中包括私有和受保护成员，但不包括超类的成员。
+        </div>
+    </div>
+</body>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+<style>
+    .center{
+         text-align:center;
+    }
+      .code{
+        margin-left:3%;
+        color:orange;
+       font-size:115%;
+       opacity:1.00;
+    }
+    .code view{
+         font-size:inherit;
+         margin-right:2%;
+    }
+     .code div{
+        color:inherit;
+        font-size:inherit;  
+        margin-bottom:1%;    
+    }
+    .zhushi{
+        color:black;
+        font-size:120%;
+        font-family:"Times New Roman",Georgia,Serif;
+    }
+    div{
+        font-family:Georgia;
+        font-size:115%;
+        opacity:0.80;
+        margin-bottom:3%;
+        color:#ffffff
+    }
+    .duibi{
+        font-size:100%;
+         color:gray;
+    }
+    h1{
+         color:#00Bfff;
+          opacity:0.85;
+    }
+    .head{
+        padding-left:20%;
+        padding-right: 20%;
+    }
+</style>
+</html>
         </div>
 
         
@@ -238,7 +290,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2021/09/15/hello-world/">http://example.com/2021/09/15/hello-world/</a></span>
+                        <span><a href="http://example.com/2021/09/16/inherit6-3/">http://example.com/2021/09/16/inherit6-3/</a></span>
                     </p>
                 
                 
@@ -271,8 +323,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/09/16/inherit1-1/">inherit1-1</a>
             
+            <a class="next" rel="next" href="/2021/09/16/inherit6-2/">inherit6-2</a>
             
         </section>
 
