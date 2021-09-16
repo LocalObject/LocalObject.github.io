@@ -13,7 +13,7 @@
 
 
 
-<title>反射 | Hexo</title>
+<title>抽象类 | Hexo</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">反射</h1>
+            <h1 class="post-title">抽象类</h1>
             
                 <div class="post-meta">
                     
@@ -202,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 16, 2021&nbsp;&nbsp;10:25:05</a>
+                        Date: <a href="#">September 16, 2021&nbsp;&nbsp;18:22:37</a>
                         </span>
                     
                     
@@ -218,133 +218,55 @@
         </header>
 
         <div class="post-content">
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+            <view>
+<h1>抽象类(abstract)</h1>
 <div>
-    <h1>反射</h1>
-    <div>
-        反射库(reflection library)提供了一态操纵Java代码的程序。 这项功能被大量地应用于JavaBeans中， 它是Java组件的体系结构,使用反射Java可以支持Visual Basic用户习惯使用的工具。 特别是在设计或运行中添加新类时能够快速地应用开发工具动态地查询新添加类的能力。</br>能够分析类能力的程序称为反射(reflective)。 反射机制的功能极其强大。
-    </div>
-    反射机制可以用来：
-    <ul>
-        <li>在运行时分析类的能力。</li>
-        <li>在运行时查看对象，</li>
-        <li>实现通用的数组操作代码</li>
-        <li>利用Method对象， 这个对象很像C++中的函数指针。</li>
-    </ul>
-    反射是一种功能强大且复杂的机制。 使用它的主要人员是工具构造者
+抽象方法充当着占位的角色 ， 它们的具体实现在子类中。扩展抽象类可以有两种选择。 一种是在抽象类中定义部分抽象类方法或不定义抽象类方法， 这样就必须将子类也标记为抽象类；另一种是定义全部的抽象方法， 这样一来， 子类就不是抽象的了。
+</div>
+</br>
+<div>
+类即使不含抽象方法， 也可以将类声明为抽象类。
+抽象类不能被实例化。 也就是说， 如果将一个类声明为 abstract, 就不能创建这个类的对象。 
+</br>
+可以定义一个抽象类的对象变量，但是它只能引用非抽象子类的对象
+</div>
+</br>
+<view>
+C++注释：在C++中， 有一种在尾部用=0标记的抽象方法， 称为纯虚函数， 例如：</br>
+<code>
+class Person// Ctt  </br>
+&#123;   </br>
+public: virtual string getDescription() = O </br>
+...     </br>
+&#125;
+</code>
+</br>
+只要有一个纯虚函数， 这个类就是抽象类。 在C++中，没有提供用于表示抽象类的 特殊关键字
+</view>
+<div>
+希望超类中的某些方法允许被子类访问， 或允许子类的方法访问超类的某个域。为此，需要将这些方法或域声明为protected。如果将超类Employee中的hireDay声明为proteced,而不是私有的，Manager中的方法就可以直接地访问它。
+不过， Manager类中的方法只能够访问Manager对象中的血eD ay 域， 而不能访问其他 Employee对象中的这个域。 这种限制有助于避免滥用受保护机制， 使得子类只能获得访问受 保护域的权利。
 </div>
 <div>
-    <h1></h1>
-    <h2>Class类</h2>
-    <div style="font-size:110%;">
-         Class类在程序运行期间，Java运行时系统始终为所有的对象维护一个被称为运行时的类型标识。 这个信息跟踪着每个对象所属的类。 虚拟机利用运行时类型信息选择相应的方法执行。</br>
-        然而， 可以通过专门的Java类访问这些信息。 保存这些信息的类被称为Class, 这个名字很容易让人混淆。 Object类中的getClass()方法将会返回一个Class类型的实例。
-        <div class="code center">
-            Employee e;</br>
-            Class cl=e.getClass();
-        </div>
-        如同用 个 Employee 对象表示 个特定的雇员属性 一样，一个Class 对象将表示 个特 定类的属性。 最常用的 Class 方法是 getName。这个方法将返回类的名字。
-        <div class="code center" style="font-size:100%;">
-           System.out.println(e.getClass().getName()+e.getName());
-        </div>
-        <div class="center" style="font-size:100%;">
-            如果e是一个雇员,则会打印</br>
-            Employee Harry Hacker
-        </div>
-         <div class="center"style="font-size:100%;" >
-            如果e是一个经理,则会打印</br>
-            Manager Harry Hacker
-        </div>
-        <div>
-            如果类在一个包里， 包的名字也作为类名的一部分
-        </div>
-        <div class="code center" style="100%">
-            Random generator = new Random() ; </br>
-            Class cl = generator.getClass(); </br>
-            String name= cl .getName(); //name is set to "java.util .Random" 
-        </div>
-        <div>
-            还可以调用静态方法 forName 获得类名对应的 Class 对象。
-        </div>
-        <div class="code center" style="font-size:100%">
-            String className = "java.util .Random";  </br>
-            Cl ass c 1 = Cl ass. forName(c 1 ass Name);  </br>
-        </div>
-        <div style="font-size:100%">
-            如果类名保存在字符串中， 并可在运行中改变， 就可以使用这个方法。 当然， 这个方法只有在 className 是类名或接口名时才能够执行。 否则， forName 方法将抛出一个checkedexception (已检查异常） 。 无论何时使用这个方法， 都应该提供个异常处理器 (exceptionhandler)。          
-        </div>
-        </br>
-        <div style="font-size:100%">
-            提示：在启动时， 包含 main 方法的类被加栽。 它会加载所有需要的类。 这些被加载的类又要加栽它们需要的类， 以此类推。 对于个大型的应用程序来说， 这将会消耗很多时，可以给用户启动速度比较快的幻觉不过， 要确保包含 main 方法的类没有显式地引用其他的类。 首先， 显示一个启动画面然后， 通过调用 Class.forName 手工地加栽其他的类。
-        </div>
-        <div class="center" style="font-size:100%">
-            一个Class对象实际上表示的是一个类型，而这个类型未必一定是一种类。
-        </div>
-        <div style="font-size:100%" >
-            Class 类实际上是一 个泛型类。 例如， Employee.class 的类型是 Class<Employee>。没有说明这个问题的原因是： 它将已经抽象的概念更加复杂化了。 在大多数实际问题中， 可以忽略类型参数， 而使用原始的 Class 类。虚拟机为每个类型管理一个 Class 对象。 因此 ， 可以利用＝运笋符实现两个类对象比较 的操作。
-        </div>
-    </div>
-    <div>
-        <h1></h1>
-        <h2 > newlnstance()可以用来动态地创建一个类的实例</h2>
-        <div class="code center">
-            e. getClass().newInstance();
-        </div>
-        <div>
-            创建了一个与 e 具有相同类类型的实例。 newInstance 方法叫用默认的构造盎（没有参数的构造器）初始化新创建的对象.如果这个类没有默认的构造器， 就会抛出一个异常。
-        </div>
-        <div class="zhushi" >
-            将 forNan1e 与 newInstance 配合起来使用， 可以根据存储在字符串中的类名创建一个对象
-            <div class="code center" >
-                String s = "java.util .Random"; </br>
-                Object m = Class. forName(s) .newlnstance(); 
-            </div>
-            如果需要以这种方式向希望按名称创建的类的构造器提供参数 ， 就不要使用上面那条语句， 而必须使用 Constructor 类中的 newlnstance 方法。
-        </div>
-        <div >
-            newlnstance 方法对应 C++ 中虚拟构造器的习惯用法 然而， C++ 中的虚拟构造器不是一种语言特性， 需要由专门的库支持。 Class 类与 C++ 中的 type_info 类相似， getClass 方法与 C++ 中的 typeid 运算符等价，， 但 Java 中的 Class 比 C++中的 type_info 的功能强。 C++中的 type_info 只能以字符串的形式显示一个类型的名字 ， 而不能创建那个类型的对象）
-        </div>
-    </div>
+在实际应用中，要谨慎使用protected属性。假设需要将设计的类提供给其他程序员使用，而在这个类中设置了一些受保护域，由于其他程序员可以由这个类再派生出新类，并访 问其中的受保护域。在这种情况下，如果需要对这个类的实现进行修改，就必须通知所有使用这个类的程序员。这违背了OOP提倡的数据封装原则。
 </div>
-</body>
-<style>
-        .center{
-         text-align:center;
-    }
-    .code{
-      text-align:center;
-      color:orange;
-    }
-    .zhushi{
-        color:black;
-        font-size:100%;
-        font-family:"Times New Roman",Georgia,Serif;
-    }
-    div{
-        font-family:Georgia;
-        font-size:100%;
-        color:black;
-        opacity:1
-    }
-    .duibi{
-        font-size:100%;
-         color:gray;
-    }
-    h1{
-         color:#00Bfff;
-          opacity:0.85;
-          font-size:100%;
-    }
-</style>
-</html>
+
+<div>受保护的方法更具有实际意义。如果需要限制某个方法的使用，就可以将它声明为protected。这表明子类（可能很熟悉祖先类）得到信任，可以正确地使用这个方法，而其他 类则不行。
+这种方法的一个最好的示例就是Object类中的clone方法
+</div>
+
+<div>事实上，Java中的受保护部分对所有子类及同一个包中的所有其他类都可见，这与C++中的保护机制稍微有不同</div>
+
+<dvi>
+Java用于控制可见性的4个访问修饰符： </br>
+<view>
+仅对本类可见一一private。</br>
+    对所有类可见一public</br>
+    对本包和所有子类可见——protected。</br>
+对本包可见——默认（很遗憾）， 不需要修饰符
+</view>
+</div>
+</view>
         </div>
 
         
@@ -358,7 +280,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2021/09/16/inherit6-1/">http://example.com/2021/09/16/inherit6-1/</a></span>
+                        <span><a href="http://example.com/2021/09/16/inherit2-1/">http://example.com/2021/09/16/inherit2-1/</a></span>
                     </p>
                 
                 
@@ -395,10 +317,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/09/16/inherit6-2/">捕获异常</a>
+                <a class="prev" rel="prev" href="/2021/09/16/inherit2-2/">Object</a>
             
             
-            <a class="next" rel="next" href="/2021/09/16/inherit1-2/">理解方法的调用</a>
+            <a class="next" rel="next" href="/2021/09/16/inherit6-3/">利用反射分析类的能力</a>
             
         </section>
 

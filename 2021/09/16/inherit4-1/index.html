@@ -13,7 +13,7 @@
 
 
 
-<title>反射 | Hexo</title>
+<title>泛型数组 | Hexo</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">反射</h1>
+            <h1 class="post-title">泛型数组</h1>
             
                 <div class="post-meta">
                     
@@ -202,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 16, 2021&nbsp;&nbsp;10:25:05</a>
+                        Date: <a href="#">September 16, 2021&nbsp;&nbsp;18:29:48</a>
                         </span>
                     
                     
@@ -218,103 +218,76 @@
         </header>
 
         <div class="post-content">
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<div>
-    <h1>反射</h1>
+            <body>
+    <h1>泛型数组列表 </h1>
     <div>
-        反射库(reflection library)提供了一态操纵Java代码的程序。 这项功能被大量地应用于JavaBeans中， 它是Java组件的体系结构,使用反射Java可以支持Visual Basic用户习惯使用的工具。 特别是在设计或运行中添加新类时能够快速地应用开发工具动态地查询新添加类的能力。</br>能够分析类能力的程序称为反射(reflective)。 反射机制的功能极其强大。
+        在许多程序设计语言中， 特别是在C++语言中， 必须在编译时就确定整个数组的大小.在 Java 中 ， 解决这个问题最简单的方法是使用 Java 中另外一个被称为 Array List 的类。ArrayList 是一个采用类型参数 (type parameter) 的泛型类 (generic class) 。 为了指定数 组列表保存的元素对象类型， 需要用一对尖括号将类名括起来加在后面，(“菱形” 语法) 
     </div>
-    反射机制可以用来：
-    <ul>
-        <li>在运行时分析类的能力。</li>
-        <li>在运行时查看对象，</li>
-        <li>实现通用的数组操作代码</li>
-        <li>利用Method对象， 这个对象很像C++中的函数指针。</li>
-    </ul>
-    反射是一种功能强大且复杂的机制。 使用它的主要人员是工具构造者
-</div>
-<div>
     <h1></h1>
-    <h2>Class类</h2>
-    <div style="font-size:110%;">
-         Class类在程序运行期间，Java运行时系统始终为所有的对象维护一个被称为运行时的类型标识。 这个信息跟踪着每个对象所属的类。 虚拟机利用运行时类型信息选择相应的方法执行。</br>
-        然而， 可以通过专门的Java类访问这些信息。 保存这些信息的类被称为Class, 这个名字很容易让人混淆。 Object类中的getClass()方法将会返回一个Class类型的实例。
-        <div class="code center">
-            Employee e;</br>
-            Class cl=e.getClass();
+    <div>
+        使用:
+        <div class="center">
+            Java SE7 中， 可以省去右边的类型参数：
         </div>
-        如同用 个 Employee 对象表示 个特定的雇员属性 一样，一个Class 对象将表示 个特 定类的属性。 最常用的 Class 方法是 getName。这个方法将返回类的名字。
-        <div class="code center" style="font-size:100%;">
-           System.out.println(e.getClass().getName()+e.getName());
-        </div>
-        <div class="center" style="font-size:100%;">
-            如果e是一个雇员,则会打印</br>
-            Employee Harry Hacker
-        </div>
-         <div class="center"style="font-size:100%;" >
-            如果e是一个经理,则会打印</br>
-            Manager Harry Hacker
+        <div class="code">
+            Arraylist<Employee> staff= new Arraylist<>();
         </div>
         <div>
-            如果类在一个包里， 包的名字也作为类名的一部分
-        </div>
-        <div class="code center" style="100%">
-            Random generator = new Random() ; </br>
-            Class cl = generator.getClass(); </br>
-            String name= cl .getName(); //name is set to "java.util .Random" 
-        </div>
-        <div>
-            还可以调用静态方法 forName 获得类名对应的 Class 对象。
-        </div>
-        <div class="code center" style="font-size:100%">
-            String className = "java.util .Random";  </br>
-            Cl ass c 1 = Cl ass. forName(c 1 ass Name);  </br>
-        </div>
-        <div style="font-size:100%">
-            如果类名保存在字符串中， 并可在运行中改变， 就可以使用这个方法。 当然， 这个方法只有在 className 是类名或接口名时才能够执行。 否则， forName 方法将抛出一个checkedexception (已检查异常） 。 无论何时使用这个方法， 都应该提供个异常处理器 (exceptionhandler)。          
+            可以结合 new 操作符使用菱形 语法。编译器会检查新值是什么。 如果赋值给一个变址，或传递到某个方法， 或者从某个方 法返回 ， 编译器会检查这个变报、 参数或方法的泛型类型， 然后将这个类型放在＜＞中.使用 add 方法可以将元素添加到数组列表中。
         </div>
         </br>
-        <div style="font-size:100%">
-            提示：在启动时， 包含 main 方法的类被加栽。 它会加载所有需要的类。 这些被加载的类又要加栽它们需要的类， 以此类推。 对于个大型的应用程序来说， 这将会消耗很多时，可以给用户启动速度比较快的幻觉不过， 要确保包含 main 方法的类没有显式地引用其他的类。 首先， 显示一个启动画面然后， 通过调用 Class.forName 手工地加栽其他的类。
+        <div>
+            数组列表管理着对象引用的一个内部数组。如果调用 add 且内部数组已经满了， 数组列表就将自动地创建 一个更大的数组， 并将所有的对象从较小的数组中拷贝到较大的数组中。也能初始分配一个容量：
         </div>
-        <div class="center" style="font-size:100%">
-            一个Class对象实际上表示的是一个类型，而这个类型未必一定是一种类。
-        </div>
-        <div style="font-size:100%" >
-            Class 类实际上是一 个泛型类。 例如， Employee.class 的类型是 Class<Employee>。没有说明这个问题的原因是： 它将已经抽象的概念更加复杂化了。 在大多数实际问题中， 可以忽略类型参数， 而使用原始的 Class 类。虚拟机为每个类型管理一个 Class 对象。 因此 ， 可以利用＝运笋符实现两个类对象比较 的操作。
-        </div>
-    </div>
-    <div>
-        <h1></h1>
-        <h2 > newlnstance()可以用来动态地创建一个类的实例</h2>
-        <div class="code center">
-            e. getClass().newInstance();
+        <div class="code">
+            staff.ensureCapacity(lOO);
         </div>
         <div>
-            创建了一个与 e 具有相同类类型的实例。 newInstance 方法叫用默认的构造盎（没有参数的构造器）初始化新创建的对象.如果这个类没有默认的构造器， 就会抛出一个异常。
+            另外， 还可以把初始容量传递给 ArrayList 构造器：
         </div>
-        <div class="zhushi" >
-            将 forNan1e 与 newInstance 配合起来使用， 可以根据存储在字符串中的类名创建一个对象
-            <div class="code center" >
-                String s = "java.util .Random"; </br>
-                Object m = Class. forName(s) .newlnstance(); 
+        <div class="code"> 
+            Arraylist<Employee> staff= new Arraylist<>(lOO); 
+        </div>
+        <ol>
+            <li class="duibi">
+                如果为数组分配 100 个元素 的存储空间， 数组就有 100 个空位置可以使用
+            </li>
+            <li class="duibi">
+                容量为 100 个元素的数组列表只是拥有保存 100 个元素的潜力（实际上， 重新分配空间的话， 将会超过 100), 但是在最初，甚至完成初始化构造之后， 数组列表根本就不含有任何元素。size 方法将返回数组列表中包含的实际元素数目
+            </li>
+        </ol>
+        <div>
+            一旦能够确认数组列表的大小不再发生变化， 就可以调用 trimToSize 方法。 这个方法将 存储区域的大小调整为当前元素数量所需要的存储空间数目。 垃圾回收器将回收多余的存储 空间。一旦整理了数组列表的大小， 添加新元素就需要花时间再次移动存储块，
+        </div>
+        <div class="zhushi">
+               注释： Java SE 5.0以前的版本没有提供泛型类， 而是有一个 ArrayList 类， 其中保存类型为 Object 的元素， 它是 “ 自适应大小 ” 的集合。 如果一定要使用老版本的 Java, 则需要 将所有的后缀<... >删掉。  
+        </div>
+        <h1>C++注释</h1>
+        <div>
+            ArrayList 类似于 C开的 vector 模板。 ArrayList 与 vector 都是泛型类型。 但是 C++ 的 vector 模板为了便于访问元素重栽了［］运算符。 由于 Java 没有运算符重栽， 所以必须调用显式的方法。 此外， C++向量是值拷贝。 如果a和 b 是两个向量， 赋值 操作 a=b 将会构造一个与b 长度相同的新向量 a, 并将所有的元素由b 拷贝到 a, 而在 Java 中， 这条赋值语句的操作结果是让 a 和b 引用同一个数组列表。
+        </div>
+        <h1>访问数组列表元素</h1>
+        <div> 
+            使用 get 和 set 方法实现访问或改变数组元素的操作</br>
+            为了插入一个新元素，位于n之后的所有元素都要向后移动一个位置,如果插入新元素后，数组列表的大小超过了容量，数组列表就会被重新分配存储空间。
+        </div>
+        <div class="zhushi">
+            没有泛型类时，原始的ArrayList类提供的get方法别无选择只能返回Object,因此，get方法的调用者必须对返回值进行类型转换：
+            <div class="code">
+                Employee e = (E1ployee) staff .get(i);
             </div>
-            如果需要以这种方式向希望按名称创建的类的构造器提供参数 ， 就不要使用上面那条语句， 而必须使用 Constructor 类中的 newlnstance 方法。
+            原始的ArrayList存在一定的危险性。它的add和set方法允许接受任意类型的对象。编译不会给出任何警告，只有在检索对象并试图对它进行类型转换时，才会发现有问题。
         </div>
-        <div >
-            newlnstance 方法对应 C++ 中虚拟构造器的习惯用法 然而， C++ 中的虚拟构造器不是一种语言特性， 需要由专门的库支持。 Class 类与 C++ 中的 type_info 类相似， getClass 方法与 C++ 中的 typeid 运算符等价，， 但 Java 中的 Class 比 C++中的 type_info 的功能强。 C++中的 type_info 只能以字符串的形式显示一个类型的名字 ， 而不能创建那个类型的对象）
+        <div>
+            使用toArray方法将数组元素拷贝到一个数组去
+            <div class="code">
+                X[] a= new X[list.size()]; </br>1ist.toArray(a); 
+            </div>
+            删除元素用 remove方法.
         </div>
     </div>
-</div>
 </body>
+
 <style>
         .center{
          text-align:center;
@@ -344,7 +317,6 @@
           font-size:100%;
     }
 </style>
-</html>
         </div>
 
         
@@ -358,7 +330,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2021/09/16/inherit6-1/">http://example.com/2021/09/16/inherit6-1/</a></span>
+                        <span><a href="http://example.com/2021/09/16/inherit4-1/">http://example.com/2021/09/16/inherit4-1/</a></span>
                     </p>
                 
                 
@@ -395,10 +367,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/09/16/inherit6-2/">捕获异常</a>
+                <a class="prev" rel="prev" href="/2021/09/16/inherit4-2/">类型化与原始数组列表的兼容性</a>
             
             
-            <a class="next" rel="next" href="/2021/09/16/inherit1-2/">理解方法的调用</a>
+            <a class="next" rel="next" href="/2021/09/16/inherit3-2/">toString</a>
             
         </section>
 

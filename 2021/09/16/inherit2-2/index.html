@@ -13,7 +13,7 @@
 
 
 
-<title>反射 | Hexo</title>
+<title>Object | Hexo</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">反射</h1>
+            <h1 class="post-title">Object</h1>
             
                 <div class="post-meta">
                     
@@ -202,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 16, 2021&nbsp;&nbsp;10:25:05</a>
+                        Date: <a href="#">September 16, 2021&nbsp;&nbsp;18:25:21</a>
                         </span>
                     
                     
@@ -218,103 +218,129 @@
         </header>
 
         <div class="post-content">
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<div>
-    <h1>反射</h1>
+            <view>
+    <h1>
+        Object: 所有类的超类
+    </h1>
     <div>
-        反射库(reflection library)提供了一态操纵Java代码的程序。 这项功能被大量地应用于JavaBeans中， 它是Java组件的体系结构,使用反射Java可以支持Visual Basic用户习惯使用的工具。 特别是在设计或运行中添加新类时能够快速地应用开发工具动态地查询新添加类的能力。</br>能够分析类能力的程序称为反射(reflective)。 反射机制的功能极其强大。
+        Object 类是 Java 中所有类的始祖， 在 Java 中每个类都是由它扩展而来的。 但是并不需 要这样写：
     </div>
-    反射机制可以用来：
-    <ul>
-        <li>在运行时分析类的能力。</li>
-        <li>在运行时查看对象，</li>
-        <li>实现通用的数组操作代码</li>
-        <li>利用Method对象， 这个对象很像C++中的函数指针。</li>
-    </ul>
-    反射是一种功能强大且复杂的机制。 使用它的主要人员是工具构造者
-</div>
-<div>
-    <h1></h1>
-    <h2>Class类</h2>
-    <div style="font-size:110%;">
-         Class类在程序运行期间，Java运行时系统始终为所有的对象维护一个被称为运行时的类型标识。 这个信息跟踪着每个对象所属的类。 虚拟机利用运行时类型信息选择相应的方法执行。</br>
-        然而， 可以通过专门的Java类访问这些信息。 保存这些信息的类被称为Class, 这个名字很容易让人混淆。 Object类中的getClass()方法将会返回一个Class类型的实例。
-        <div class="code center">
-            Employee e;</br>
-            Class cl=e.getClass();
-        </div>
-        如同用 个 Employee 对象表示 个特定的雇员属性 一样，一个Class 对象将表示 个特 定类的属性。 最常用的 Class 方法是 getName。这个方法将返回类的名字。
-        <div class="code center" style="font-size:100%;">
-           System.out.println(e.getClass().getName()+e.getName());
-        </div>
-        <div class="center" style="font-size:100%;">
-            如果e是一个雇员,则会打印</br>
-            Employee Harry Hacker
-        </div>
-         <div class="center"style="font-size:100%;" >
-            如果e是一个经理,则会打印</br>
-            Manager Harry Hacker
-        </div>
-        <div>
-            如果类在一个包里， 包的名字也作为类名的一部分
-        </div>
-        <div class="code center" style="100%">
-            Random generator = new Random() ; </br>
-            Class cl = generator.getClass(); </br>
-            String name= cl .getName(); //name is set to "java.util .Random" 
-        </div>
-        <div>
-            还可以调用静态方法 forName 获得类名对应的 Class 对象。
-        </div>
-        <div class="code center" style="font-size:100%">
-            String className = "java.util .Random";  </br>
-            Cl ass c 1 = Cl ass. forName(c 1 ass Name);  </br>
-        </div>
-        <div style="font-size:100%">
-            如果类名保存在字符串中， 并可在运行中改变， 就可以使用这个方法。 当然， 这个方法只有在 className 是类名或接口名时才能够执行。 否则， forName 方法将抛出一个checkedexception (已检查异常） 。 无论何时使用这个方法， 都应该提供个异常处理器 (exceptionhandler)。          
-        </div>
-        </br>
-        <div style="font-size:100%">
-            提示：在启动时， 包含 main 方法的类被加栽。 它会加载所有需要的类。 这些被加载的类又要加栽它们需要的类， 以此类推。 对于个大型的应用程序来说， 这将会消耗很多时，可以给用户启动速度比较快的幻觉不过， 要确保包含 main 方法的类没有显式地引用其他的类。 首先， 显示一个启动画面然后， 通过调用 Class.forName 手工地加栽其他的类。
-        </div>
-        <div class="center" style="font-size:100%">
-            一个Class对象实际上表示的是一个类型，而这个类型未必一定是一种类。
-        </div>
-        <div style="font-size:100%" >
-            Class 类实际上是一 个泛型类。 例如， Employee.class 的类型是 Class<Employee>。没有说明这个问题的原因是： 它将已经抽象的概念更加复杂化了。 在大多数实际问题中， 可以忽略类型参数， 而使用原始的 Class 类。虚拟机为每个类型管理一个 Class 对象。 因此 ， 可以利用＝运笋符实现两个类对象比较 的操作。
-        </div>
+    <div class="code">
+        public class Employee extends Object
     </div>
     <div>
-        <h1></h1>
-        <h2 > newlnstance()可以用来动态地创建一个类的实例</h2>
-        <div class="code center">
-            e. getClass().newInstance();
-        </div>
-        <div>
-            创建了一个与 e 具有相同类类型的实例。 newInstance 方法叫用默认的构造盎（没有参数的构造器）初始化新创建的对象.如果这个类没有默认的构造器， 就会抛出一个异常。
-        </div>
-        <div class="zhushi" >
-            将 forNan1e 与 newInstance 配合起来使用， 可以根据存储在字符串中的类名创建一个对象
-            <div class="code center" >
-                String s = "java.util .Random"; </br>
-                Object m = Class. forName(s) .newlnstance(); 
+        如果没有明确地指出超类， Object 就被认为是这个类的超类。 由于在 Java 中， 每个类都 是由 Object 类扩展而来的
+    </div>
+    <div class="center">
+        可以使用 Object 类型的变扯引用任何类型的对象：
+    </div >
+            <div class="code">
+                Object obj = new Employee ("Harry Hacker", 35000);
+            </div></br>
+    <div class="center">       
+        当然， Object 类型的变址只能用于作为各种值的通用持有者。 要想对其中的内容进行具体的 操作， 还需要清楚对象的原始类型， 并进行相应的类型转换：
+            <div class="code">
+                Employee e = (Employee) obj;
             </div>
-            如果需要以这种方式向希望按名称创建的类的构造器提供参数 ， 就不要使用上面那条语句， 而必须使用 Constructor 类中的 newlnstance 方法。
+    </div>
+    <div>
+        在 Java 中 ， 只有基本类型 (primitive types) 不是对象， 例如， 数值、 字符和布尔类型的 值都不是对象。
+    </div>
+    <div class="zhushi">
+        C++注释：在 C++没有所有类的根类， 不过， 每个指针都可以转换成 void* 指针。
+    </div>
+    <h1>equals 方法</h1>
+    <div>
+        在 Object 类中，这个方法将判断两个对象是否具有相同的引用. 如果两个参数都为 null, Objects.equals(a, b) 调用将返回 true ; 如果其中一个参数为 null, 则返回 false ; 否则， 如果两个参数都不为 null, 则调用 a.equals(b)。
+        <div class="code">
+            在子类中定义 equals 方法时， 首先调用超类的 equals。如果检测失败 ， 对象就不可能相等
+        </div>     
+    </div>
+    <h1>相等测试与继承</h1>
+    <div>
+        如果发现类不匹配 ， equals 方法就返同 false.但是， 许多程序员却喜欢使用 instanceof 进行检测：
+        <div class="code">
+            if (! (othe rObj ect i nstanceof Employee)) </br>
+            return false; 
         </div>
-        <div >
-            newlnstance 方法对应 C++ 中虚拟构造器的习惯用法 然而， C++ 中的虚拟构造器不是一种语言特性， 需要由专门的库支持。 Class 类与 C++ 中的 type_info 类相似， getClass 方法与 C++ 中的 typeid 运算符等价，， 但 Java 中的 Class 比 C++中的 type_info 的功能强。 C++中的 type_info 只能以字符串的形式显示一个类型的名字 ， 而不能创建那个类型的对象）
+        这样做没有解决 otherObject 是子类的情况
+        <h1></h1>
+        <div class="center" style="font-size:100%;">
+            Java 语言规范要求 equals 方法具有下面的特性：
+        </div>
+        <ol>
+            <li >
+                自反性： 对于任何非空引用 x, x.equals(x) 应该返回 true
+            </li>
+            <li >
+                对称性： 对于任何引用 x 和 y, 当且仅当 y.equals(x) 返回 true, x.equals(y) 也应该返回true
+            </li>
+             <li >
+                传递性： 对于任何引用 x、y 和 z, 如果 x.equals(y) 返问 true, y.equals(z) 返回 true,则x.    equals(z) 也应该返回 true
+            </li>
+            <li >
+                一致性： 如果 x 和 y 引用的对象没有发生变化， 反复调用 x.equals( y) 应该返回同样的结果。
+            </li>
+            <li >
+                 对于任意非空引用 x, x.equals(null) 应该返回 false。
+            </li>
+        </ol>
+        <div class="duibi">
+            如果子类能够拥有自己的相等概念 ， 则对称性需求将强制采用 getClass 进行检测。
+        </div>
+        <div class="duibi">
+           如果由超类决定相等的概念，那么就可以使用instanceof进行检测，这样可以在不同子类的对象之间进行相等的比较。
+        </div>
+        <div class="center" >
+           下面给出编写一个完美的equals方法的建议：
+        </div>
+        <ol>
+            <li >
+                显式参数命名为otherObject,稍后需要将它转换成另一个叫做other的变量。
+            </li>
+            <li >
+                检测this与otherObject是否引用同一个对象：
+                <div class="code">
+                    if (this == othe rObj ect) </br>
+                    return true;
+                </div>
+                这条语句只是一个优化。实际上，这是一种经常采用的形式。因为计算这个等式要比一个一个地比较类中的域所付出的代价小得多
+            </li>
+             <li >
+                检测otherObject是否为null,如果为null,返回false。这项检测是很必要的。
+                if (otherObj ect == nu 11) return fa1se;
+            </li>
+            <li >
+                比较this与otherObject是否属于同一个类。如果equals的语义在每个子类中有所改变，就使用getClass检测：
+                <div class="code">
+                    if (get Cl ass() ! = otherObject.get(lass()) </br>
+                    return fa1se;
+                </div>
+                如果所有的子类都拥有统一的语义，就使用instanceof检测：
+                <div class="code">
+                   if (! (otherObject instanceof ClassName)) </br>
+                   return false; 
+                </div>
+            </li>
+            <li >
+                 将otherObject转换为相应的类类型变量：
+                 <div class="code">
+                   Cl assName other = (Cl assName) otherObj ect 
+                </div>
+            </li>
+            <li >
+                现在开始对所有需要比较的域进行比较了。使用＝＝比较基本类型域，使用equals比较对象域。如果所有的域都匹配，就返回true;否则返回false。
+            </li>
+            <li >
+                如果在子类中重新定义equals,就要在其中包含调用super.equals(other)。
+            </li>
+        </ol>
+        <div class="zhushi">
+            对于数组类型的域，可以使用静态的Arrays.equals方法栓测相应的数组元素是否相等。
         </div>
     </div>
-</div>
-</body>
+</view>
+
 <style>
         .center{
          text-align:center;
@@ -344,7 +370,8 @@
           font-size:100%;
     }
 </style>
-</html>
+
+
         </div>
 
         
@@ -358,7 +385,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2021/09/16/inherit6-1/">http://example.com/2021/09/16/inherit6-1/</a></span>
+                        <span><a href="http://example.com/2021/09/16/inherit2-2/">http://example.com/2021/09/16/inherit2-2/</a></span>
                     </p>
                 
                 
@@ -395,10 +422,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/09/16/inherit6-2/">捕获异常</a>
+                <a class="prev" rel="prev" href="/2021/09/16/inherit3-1/">hashCode</a>
             
             
-            <a class="next" rel="next" href="/2021/09/16/inherit1-2/">理解方法的调用</a>
+            <a class="next" rel="next" href="/2021/09/16/inherit2-1/">抽象类</a>
             
         </section>
 
