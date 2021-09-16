@@ -13,7 +13,7 @@
 
 
 
-<title>Tree1-2 | Hexo</title>
+<title>Stack1-1 | Hexo</title>
 
 
 
@@ -127,11 +127,73 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Tree1-2</h1>
+            <h1 class="post-title">Stack1-1</h1>
             
                 <div class="post-meta">
                     
@@ -140,16 +202,104 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 16, 2021&nbsp;&nbsp;19:31:08</a>
+                        Date: <a href="#">September 16, 2021&nbsp;&nbsp;22:15:00</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/Categories/Stack/">Stack</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            
+            <h1>线性表问题</h1>
+<ol>
+    <li>
+        顺序存储结构的优点:存储密度大
+        <div class="zhushi">
+            与链表相比，顺序表无需存放指针域
+        </div>
+    </li>
+    <li>
+        线性表的顺序存储结构是一种随机存取的存储结构
+        <div>
+            注意区别顺序存取的存储结构和随机的存取的存储结构。随机存取的存储结构是给一个数就能得到它，而顺序存取的存储结构像单链表一样。
+        </div>
+    </li>
+    <li>
+        一个顺序表所占用的存储空间大小与元素的存放顺序无关。
+        <div>
+            顺序表的所占的存储空间大小为顺序表有多少个元素乘以1个元素所占的空间，然而1个单位大小所占的空间是与元素类型紧密相关的，可以1认为元素的类型直接决定了单个元素的所占用空间
+        </div>
+        <div>
+            元素中各字段的类型："类"的概念。举例：元素自由建立类型构建，而自建类中包含多种类型，那么元素中各字段的类型的改变会直接导致整体的这个类的"单个元素所占空间"发生改变
+        </div>
+    </li>
+    <li>
+        在一个长度为n的顺序表中删除第i个元素(1<=i<=n)时，需要移动n-i个元素 <div>
+            删除第i个元素，即要移动从i+1开始到n的元素。1到n有（n-1）+1个元素，那么i+1到n有(n-(n+1))+1个元素，即有n-i个元素
+        
+    </=i<=n)时，需要移动n-i个元素></li>
+</ol>
+
+<style>
+    .center{
+         text-align:center;
+    }
+    .code{
+        margin-left:5%;
+        color:orange;
+       font-size:100%;
+    }
+    .code view{
+         font-size:inherit;
+         margin-right:2%;
+    }
+    .code div{
+        color:inherit;
+        font-size:inherit;  
+    }
+    }
+    .zhushi{
+         font-size:inherit;
+        color:gray;
+        font-size:100%;
+        font-family:"Times New Roman",Georgia,Serif;
+    }
+    div{
+        font-family:Georgia;
+        font-size:100%;
+        color:rgb(210,210,210);
+        opacity:0.92;
+        margin-top:1.5%;
+    }
+    .duibi{
+        font-size:100%;
+         color:gray;
+    }
+    h1{
+         color:#00Bfff;
+          opacity:0.85;
+    }
+    ol li{
+        font-size:100%;
+         font-family:"Times New Roman",Georgia,Serif;
+         margin-top:3%;
+         color:#00Bfff;
+          opacity:0.85;
+    }
+    ol li div{
+        font-size:100%;
+         font-family:Georgia;
+    }
+</style>
+
         </div>
 
         
@@ -163,7 +313,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2021/09/16/Tree1-2/">http://example.com/2021/09/16/Tree1-2/</a></span>
+                        <span><a href="http://example.com/2021/09/16/Stack1-1/">http://example.com/2021/09/16/Stack1-1/</a></span>
                     </p>
                 
                 
@@ -186,6 +336,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/Data-Structure/"># Data_Structure</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -196,10 +350,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/09/16/Stack1-1/">Stack1-1</a>
             
-            
-            <a class="next" rel="next" href="/2021/09/16/Tree1-1/">Tree1-1</a>
+            <a class="next" rel="next" href="/2021/09/16/Tree1-2/">Tree1-2</a>
             
         </section>
 
