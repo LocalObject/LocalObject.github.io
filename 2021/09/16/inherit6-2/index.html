@@ -214,7 +214,7 @@
             <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="GBK">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -224,7 +224,7 @@
     <h1>捕获异常 </h1>
     <div>
         <div>  
-            当程序运行过程中发生错误时 ， 就会 ”抛出异常” 。 抛出异常比终止程序要灵活得多， 这是因为可以提供一个 “捕获 “ 异常的处理器 (handler) 对异常情况进行处理。
+            当程序运行过程中发生错误时 ， 就会 ”抛巾异常” 。 抛出异常比终止程序要灵活得多， 这是因为可以提供一个 “捕获 “ 异常的处理器 (handler) 对异常情况进行处理。
         </div>
         <div>
             如果没有提供处理器 ， 程序就会终止， 并在控制台上打印出一条信息 ， 其中给出了异常的类型。 可能在前面已经看到过一些异常报告 ， 例如 ， 偶然使用了 null 引用或者数组越界等。异常有两种类型： 未栓查异常和已检查异常己 对于已检查异常 ， 编译器将会检查是否提 供了处理器。
@@ -269,38 +269,26 @@
             如果类名不存在，则将跳过try块中的剩余代码，程序直接进入catch子句（这里,利用 Throwable类的printStackTrace方法打印出栈的轨迹。Throwable是Exception类的超类）。如 果try块中没有抛出任何异常，那么会跳过catch子句的处理器代码。对于巳检查异常，只需要提供一个异常处理器。可以很容易地发现会抛出已检查异常的 方法。如果调用了一个抛出巳检查异常的方法，而又没有提供处理器，编译器就会给出错误报告。
         </div>
     </div>
-</body>
+    
 
+</body>
 <style>
-    .center{
+     .center{
          text-align:center;
     }
-      .code{
-        margin-left:3%;
-        color:orange;
-       font-size:115%;
-       opacity:1.00;
-    }
-    .code view{
-         font-size:inherit;
-         margin-right:2%;
-    }
-     .code div{
-        color:inherit;
-        font-size:inherit;  
-        margin-bottom:1%;    
+    .code{
+      color:orange;
     }
     .zhushi{
         color:black;
-        font-size:120%;
+        font-size:100%;
         font-family:"Times New Roman",Georgia,Serif;
     }
     div{
         font-family:Georgia;
-        font-size:115%;
-        opacity:0.80;
-        margin-bottom:3%;
-        color:#ffffff
+        font-size:100%;
+        color:black;
+        opacity:1
     }
     .duibi{
         font-size:100%;
@@ -309,10 +297,7 @@
     h1{
          color:#00Bfff;
           opacity:0.85;
-    }
-    .head{
-        padding-left:20%;
-        padding-right: 20%;
+          font-size:100%;
     }
 </style>
 </html>

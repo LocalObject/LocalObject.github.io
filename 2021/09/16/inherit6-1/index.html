@@ -237,7 +237,7 @@
 <div>
     <h1></h1>
     <h2>Class类</h2>
-    <div style="font-size:110%;">
+    <div >
          Class类在程序运行期间，Java运行时系统始终为所有的对象维护一个被称为运行时的类型标识。这个信息跟踪着每个对象所属的类。 虚拟机利用运行时类型信息选择相应的方法执行。</br>
         然而， 可以通过专门的Java类访问这些信息。 保存这些信息的类被称为Class, 这个名字很容易让人混淆。 Object类中的getClass()方法将会返回一个Class类型的实例。
         <div class="code center">
@@ -245,21 +245,21 @@
             Class cl=e.getClass();
         </div>
         如同用个 Employee 对象表示 个特定的雇员属性一样，一个Class 对象将表示 个特 定类的属性。 最常用的 Class 方法是 getName。这个方法将返回类的名字。
-        <div class="code center" style="font-size:100%;">
+        <div class="code center" >
            System.out.println(e.getClass().getName()+e.getName());
         </div>
-        <div class="center" style="font-size:100%;">
+        <div class="center">
             如果e是一个雇员,则会打印</br>
             Employee Harry Hacker
         </div>
-         <div class="center"style="font-size:100%;" >
+         <div class="center" >
             如果e是一个经理?,则会打印</br>
             Manager Harry Hacker
         </div>
         <div>
             如果类在一个包里， 包的名字也作为类名的一部分
         </div>
-        <div class="code center" style="100%">
+        <div class="code center" >
             Random generator = new Random() ; </br>
             Class cl = generator.getClass(); </br>
             String name= cl .getName(); //name is set to "java.util .Random" 
@@ -267,47 +267,47 @@
         <div>
             还可以调用静态方法 forName 获得类名对应的 Class 对象。
         </div>
-        <div class="code center" style="font-size:100%">
+        <div class="code center">
             String className = "java.util .Random";  </br>
             Cl ass c 1 = Cl ass. forName(c 1 ass Name);  </br>
         </div>
-        <div style="font-size:100%">
+        <div >
             如果类名保存在字符串中， 并可在运行中改变， 就可以使用这个方法。 当然， 这个方法只有在 className 是类名或接口名时才能够执行。 否则， forName 方法将抛出一个checkedexception (已检查异常） 。 无论何时使用这个方法， 都应该提供个异常处理器(exceptionhandler)。          
         </div>
         </br>
-        <div style="font-size:100%">
+        <div >
             提示：在启动时， 包含 main 方法的类被加栽。它会加载所有需要的类。 这些被加载的类又要加栽它们需要的类， 以此类推。对于个大型的应用程序来说， 这将会消耗很多时，可以给用户启动速度比较快的幻觉不过， 要确保包含 main 方法的类没有显式地引用其他的类。 首先， 显示一个启动画面然后， 通过调用 Class.forName 手工地加栽其他的类。
         </div>
-        <div class="center" style="font-size:100%">
+        <div class="center" >
             一个Class对象实际上表示的是一个类型，而这个类型未必一定是一种类。
         </div>
-        <div style="font-size:100%" >
+        <div  >
             Class 类实际上是一 个泛型类。 例如， Employee.class 的类型是 Class<Employee>。没有说明这个问题的原因是： 它将已经抽象的概念更加复杂化了。 在大多数实际问题中， 可以忽略类型参数， 而使用原始的 Class 类。虚拟机为每个类型管理一个 Class 对象。 因此 ， 可以利用＝运算符实现两个类对象比较的操作。
         </div>
     </div>
     <div>
         <h1></h1>
-        <h2 style="font-size:100%"> newlnstance()可以用来动态地创建一个类的实例</h2>
+        <h2 > newlnstance()可以用来动态地创建一个类的实例</h2>
         <div class="code center">
             e. getClass().newInstance();
         </div>
         <div>
             创建了一个与 e 具有相同类类型的实例。 newInstance 方法叫用默认的构造盎（没有参数的构造器）初始化新创建的对象.如果这个类没有默认的构造器， 就会抛出一个异常。
         </div>
-        <div class="zhushi" style="font-size:89%;">
+        <div class="zhushi" >
             将 forNan1e 与 newInstance 配合起来使用，可以根据存储在字符串中的类名创建一个对象
-            <div class="code center" style="font-size:100%;">
+            <div class="code center" >
                 String s = "java.util .Random"; </br>
                 Object m = Class. forName(s) .newlnstance(); 
             </div>
             如果需要以这种方式向希望按名称创建的类的构造器提供参数 ，就不要使用上面那条语句， 而必须使用 Constructor 类中的newlnstance 方法。
         </div>
-        <div style="font-size:;100%">
+        <div >
             newlnstance 方法对应 C++ 中虚拟构造器的习惯用法 然而， C++ 中的虚拟构造器不是一种语言特性， 需要由专门的库支持。 Class 类与 C++ 中的 type_info 类相似， getClass 方法与 C++ 中的 typeid 运算符等价，但 Java 中的 Class 比 C++中的 type_info 的功能强。 C++中的 type_info 只能以字符串的形式显示一个类型的名字 ，而不能创建那个类型的对象。
         </div>
     </div>
 </div>
-
+</body>
 <style>
         .center{
          text-align:center;
@@ -315,19 +315,17 @@
     .code{
       text-align:center;
       color:orange;
-
     }
     .zhushi{
         color:black;
-        font-size:120%;
+        font-size:100%;
         font-family:"Times New Roman",Georgia,Serif;
     }
     div{
         font-family:Georgia;
-        font-size:125%;
+        font-size:100%;
         color:black;
         opacity:1
-
     }
     .duibi{
         font-size:100%;
@@ -336,10 +334,7 @@
     h1{
          color:#00Bfff;
           opacity:0.85;
-    }
-    .head{
-        padding-left:20%;
-        padding-right: 20%;
+          font-size:100%;
     }
 </style>
 </html>
@@ -392,7 +387,7 @@
                 <a class="prev" rel="prev" href="/2021/09/16/inherit6-2/">inherit6-2</a>
             
             
-            <a class="next" rel="next" href="/2021/09/16/inherit2-1/">inherit2-1</a>
+            <a class="next" rel="next" href="/2021/09/16/inherit1-2/">inherit1-2</a>
             
         </section>
 
