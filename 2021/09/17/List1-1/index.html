@@ -440,6 +440,20 @@
                     采用链表的方式，只需要把S1的表尾与S2的表头拼接起来，时间上为&Omicron;(1)
                 </div>
             </li>
+            <li>
+                给出一个&theta;(n)时间的非递归过程，实现一个含n个元素的单链表逆转。要求除存储链表本身所需的空间外，该过程只能使用固定的大小的存储空间
+                <div>
+                    <code>LIST-REVERSION(L)</code><br>
+                    <code>1 new S.nil</code><br>
+                    <code>2 x=L.nil.next</code><br>
+                    <code>3 whie x!=L.nil</code><br>
+                     <code>4<view style=" padding-left:6%">node=x.next</view></code><br>
+                     <code>5<view style=" padding-left:6%">x.next=S.nil.next</view></code><br>
+                     <code>6<view style=" padding-left:6%">S.nil.next=x</view></code><br>
+                     <code>7<view style=" padding-left:6%">x=node</view></code><br>
+                   <code>8 L.nil=S.nil</code>
+                </div>
+            </li>
         </ol>
     </div>
 </body>
