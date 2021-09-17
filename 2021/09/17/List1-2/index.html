@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiao chong">
+
+
+
+
+
+<title>List1-2 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">xiaochong</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">xiaochong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">List1-2</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">xiao chong</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 17, 2021&nbsp;&nbsp;21:00:16</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/List/">List</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>链表的习题</h1>
+    <ol>
+        <li>
+            将两个递增的有序链表合并为一个递增的有序链表。要求结果链表仍使用原来的两个链表的存储空间，不另外占用其他的存储空间，表中不允许有重复的数据。
+            <div>
+                <div style="text-align:center;">为了方便不处理边界采用带哨兵的单链表形式</div>
+                <code>LIST-ORDERLY-MARGE(L1,L2)</code><br>
+                <code>1 p1=L1.nil.next</code><br>
+                <code>2 p2=L2.nil.next</code><br>
+                <code><view style="padding-left:7%;">//new tail=L.nil</view></code><br>
+                <code>3 while p1!=L1.nil and p2!=L2.nil</code><br>
+                <code>4 <view style="padding-left:5%;">if p1.key<= p2.key < view></=></view></code><br>
+                <code>5 <view style="padding-left:9%;">if p1.key!=tail.key </view></code><br>
+                <code>6 <view style="padding-left:13%;">tail.next=p1</view></code><br>
+                <code>7 <view style="padding-left:13%;">tail=tail.next</view></code><br>
+                <code>8 <view style="padding-left:13%;">p1=p1.next</view></code><br>
+                 <code>9 <view style="padding-left:9%;">else </view></code><br>
+                  <code>10 <view style="padding-left:13%;">p1=p1.next</view></code><br>
+                  <code>11 <view style="padding-left:5%;">else</view></code><br>
+                <code>12 <view style="padding-left:9%;">if p2.key!=tail.key </view></code><br>
+                <code>13 <view style="padding-left:13%;">tail.next=p2</view></code><br>
+                <code>14 <view style="padding-left:13%;">    tail=tail.next</view></code><br>
+                <code>15 <view style="padding-left:13%;">p2=p2.next</view></code><br>
+                 <code>16 <view style="padding-left:9%;">else </view></code><br>
+                  <code>17 <view style="padding-left:13%;">p1=p1.next</view></code><br>
+                  <code>18  if p1!=L1.nil</code><br>
+                  <code> 19<view style="padding-left:5%;">tail.next=p1</view></code><br>
+                  <code>20  if p2!=L2.nil</code><br>
+                  <code>21<view style="padding-left:5%;">tail.next=p2</view></code>
+            </div>
+            <ul>
+                <li>根据题目描述，链表L1,L2是递增的，因此容易想到使用双指针p1和p2遍历两链表链表，根据L1.key和L2.key的大小关系确定添加结点顺序，两指针交替前进，直至遍历完毕
+                </li>
+                <li>引入哨兵nil:由于初始状态合并链表中无结点，因此循环第一轮无法将结点添加到合并链表L中(边界问题),故初始化一个哨兵nil(哨兵请看List1-1)</li>
+                <li>为了方便在表尾添加数据，增加一个tail指针指向合并表L的表尾，由于开始无结点，故指向L.nil(哨兵).</li>
+            </ul>
+            <div>算法流程：
+                <div>初始化：哨兵L.nil,表尾tail=L.nil</div>
+                <div>循环合并：(在更新时候，注意边界查看表尾tail.key是否与添加的key相等)</div>
+                <ol style="padding-left:15%;">
+                      <li>当p1.key<=p2.key时，表尾tail.next指向p1,更新tail和p1< li>
+                      <li>当p2.key< p1.key时，表尾tail.next指向p2,更新tail和p2</li>
+                </=p2.key时，表尾tail.next指向p1,更新tail和p1<></li></ol>
+                <div>
+                    合并剩余尾部：跳出时有两种情况，即L1遍历完或L2遍历完
+                </div>
+            </div>
+            <div>时间复杂度为：&Omicron;(n+m)</div>
+            <a src="https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/solution/mian-shi-ti-25-he-bing-liang-ge-pai-xu-de-lian-b-2/">剑指 Offer 25合并两个排序的链表</a>
+        </li>
+    
+</ol></body>
+<style>
+    .center{
+         text-align:center;
+    }
+    code{
+      padding-left:10%
+    }
+    .zhushi{
+        color:black;
+        font-size:100%;
+        font-family:"Times New Roman",Georgia,Serif;
+    }
+    div{
+        font-family:Georgia;
+        font-size:100%;
+        color:black;
+        opacity:1
+    }
+    .duibi{
+        font-size:100%;
+         color:gray;
+    }
+    h1{
+         color:#00Bfff;
+          opacity:0.85;
+          font-size:100%;
+    }
+    ol li div{
+         padding-left:4%;
+         margin-top:1%;
+    }
+    ol li{
+         margin-top:1.5%;
+    }
+</style>
+</html>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>xiao chong</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2021/09/17/List1-2/">http://example.com/2021/09/17/List1-2/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Data-Structure/"># Data-Structure</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/09/17/List1-1/">List1-1</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© xiao chong | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
