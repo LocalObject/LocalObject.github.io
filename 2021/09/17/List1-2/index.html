@@ -13,7 +13,7 @@
 
 
 
-<title>链表的算法设计 | Hexo</title>
+<title>链表的算法设计1-1 | Hexo</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">链表的算法设计</h1>
+            <h1 class="post-title">链表的算法设计1-1</h1>
             
                 <div class="post-meta">
                     
@@ -240,22 +240,40 @@
                 <code>3 while p1!=L1.nil and p2!=L2.nil</code><br>
                 <code>4 <view style="padding-left:5%;">if p1.key<= p2.key < view></=></view></code><br>
                 <code>5 <view style="padding-left:9%;">if p1.key!=tail.key </view></code><br>
-                <code>6 <view style="padding-left:13%;">tail.next=p1</view></code><br>
-                <code>7 <view style="padding-left:13%;">tail=tail.next</view></code><br>
-                <code>8 <view style="padding-left:13%;">p1=p1.next</view></code><br>
-                 <code>9 <view style="padding-left:9%;">else </view></code><br>
-                  <code>10 <view style="padding-left:13%;">p1=p1.next</view></code><br>
-                  <code>11 <view style="padding-left:5%;">else</view></code><br>
-                <code>12 <view style="padding-left:9%;">if p2.key!=tail.key </view></code><br>
-                <code>13 <view style="padding-left:13%;">tail.next=p2</view></code><br>
-                <code>14 <view style="padding-left:13%;">    tail=tail.next</view></code><br>
-                <code>15 <view style="padding-left:13%;">p2=p2.next</view></code><br>
-                 <code>16 <view style="padding-left:9%;">else </view></code><br>
-                  <code>17 <view style="padding-left:13%;">p2=p2.next</view></code><br>
-                  <code>18  if p1!=L1.nil</code><br>
-                  <code> 19<view style="padding-left:5%;">tail.next=p1</view></code><br>
-                  <code>20  if p2!=L2.nil</code><br>
-                  <code>21<view style="padding-left:5%;">tail.next=p2</view></code>
+                <code>6 <view style="padding-left:13%;">temp=p1.next</view></code><br>
+                <code>7 <view style="padding-left:13%;">p1.next=tail.next</view></code><br>
+                <code>8 <view style="padding-left:13%;">tail.next=p1</view></code><br>
+                <code>9 <view style="padding-left:13%;">tail=tail.next</view></code><br>
+                <code>10 <view style="padding-left:13%;">p1=temp</view></code><br>
+                 <code>11 <view style="padding-left:9%;">else </view></code><br>
+                  <code>12 <view style="padding-left:13%;">p1=p1.next</view></code><br>
+                  <code>13 <view style="padding-left:5%;">else</view></code><br>
+                <code>14 <view style="padding-left:9%;">if p2.key!=tail.key </view></code><br>
+                <code>15 <view style="padding-left:13%;">temp=p2.next</view></code><br>
+                <code>16 <view style="padding-left:13%;">p2.next=tail.next</view></code><br>
+                <code>17 <view style="padding-left:13%;">tail.next=p2</view></code><br>
+                <code>18 <view style="padding-left:13%;">    tail=tail.next</view></code><br>
+                <code>19 <view style="padding-left:13%;">p2=temp</view></code><br>
+                 <code>20 <view style="padding-left:9%;">else </view></code><br>
+                  <code>21 <view style="padding-left:13%;">p2=p2.next</view></code><br>
+                  <code>22 while p1!=L1.nil</code><br>
+                 <code>23 <view style="padding-left:9%;">if p1.key!=tail.key </view></code><br>
+                <code>24 <view style="padding-left:13%;">temp=p1.next</view></code><br>
+                <code>25 <view style="padding-left:13%;">p1.next=tail.next</view></code><br>
+                <code>26 <view style="padding-left:13%;">tail.next=p1</view></code><br>
+                <code>27 <view style="padding-left:13%;">tail=tail.next</view></code><br>
+                <code>28 <view style="padding-left:13%;">p1=temp</view></code><br>
+                 <code>29 <view style="padding-left:9%;">else </view></code><br>
+                  <code>30 <view style="padding-left:13%;">p1=p1.next</view></code><br>
+                <code>31 while p2!=L2.nil</code><br>
+                <code>32 <view style="padding-left:9%;">if p2.key!=tail.key </view></code><br>
+                <code>33 <view style="padding-left:13%;">temp=p2.next</view></code><br>
+                <code>34 <view style="padding-left:13%;">p2.next=tail.next</view></code><br>
+                <code>35 <view style="padding-left:13%;">tail.next=p2</view></code><br>
+                <code>36 <view style="padding-left:13%;">    tail=tail.next</view></code><br>
+                <code>37 <view style="padding-left:13%;">p2=temp</view></code><br>
+                 <code>38 <view style="padding-left:9%;">else </view></code><br>
+                  <code>39 <view style="padding-left:13%;">p2=p2.next</view></code><br>
             </div>
             <ul>
                 <li>根据题目描述，链表L1,L2是递增的，因此容易想到使用双指针p1和p2遍历两链表链表，根据L1.key和L2.key的大小关系确定添加结点顺序，两指针交替前进，直至遍历完毕
@@ -409,6 +427,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/09/18/list1-3/">链表的算法设计1-2</a>
             
             
             <a class="next" rel="next" href="/2021/09/17/List1-1/">List1-1</a>
