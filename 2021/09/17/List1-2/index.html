@@ -13,7 +13,7 @@
 
 
 
-<title>链表的习题 | Hexo</title>
+<title>链表的算法设计 | Hexo</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">链表的习题</h1>
+            <h1 class="post-title">链表的算法设计</h1>
             
                 <div class="post-meta">
                     
@@ -277,6 +277,50 @@
             <div>时间复杂度为：&Omicron;(n+m)</div>
             <a href="https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/solution/mian-shi-ti-25-he-bing-liang-ge-pai-xu-de-lian-b-2/" target="_blank">剑指 Offer 25合并两个排序的链表</a>
             <a href="https://cn.bing.com/images/search?view=detailV2&ccid=AOIFaE57&id=BB0104F6B689B65C1EFA85FECC028C964D16F361&thid=OIP.AOIFaE577zHaSYG0pRIKaQHaD0&mediaurl=https%3a%2f%2fwww.vigor666.com%2fimages%2fleetcode.assets%2f%e5%90%88%e5%b9%b6%e6%9c%89%e5%ba%8f%e9%93%be%e8%a1%a8.gif&exph=308&expw=598&q=%e5%90%88%e5%b9%b6%e4%b8%a4%e4%b8%aa%e9%93%be%e8%a1%a8&simid=608001291462384364&FORM=IRPRST&ck=4BDF588B431E02CB6C973BBE354DB03C&selectedIndex=7&qft=+filterui%3aphoto-animatedgif&ajaxhist=0&ajaxserp=0" target="_blank"><img src="https://www.bing.com/th/id/OGC.00e205684e7bef31da4981b4a5120a69?pid=1.7&rurl=https%3a%2f%2fwww.vigor666.com%2fimages%2fleetcode.assets%2f%e5%90%88%e5%b9%b6%e6%9c%89%e5%ba%8f%e9%93%be%e8%a1%a8.gif&ehk=fwfddcGkcXCwR%2bgRLWuaA0iCRtOxK%2b8blXw3glaCsYw%3d"></a>
+        </li>
+        <li>
+            将两个非递减的有序链表合并为一个非递增的有序链表，要求结果链表仍使用原来的存储空间，允许有重复。与上题一样为了更容易处理边界采用哨兵且要求空间复杂度改为&Omicron;(1)
+            <div>
+               <code>LIST-Turn-ORDERLY-MARGE(L1,L2)</code><br>
+               <code>1 new L3.nil</code><br>
+               <code>2 p1=L1.nil.next</code><br>
+               <code>3 p2=L2.nil.next</code><br>
+               <code>4 while p1!=L1.nil and p2!=L2.nil.next</code><br>
+               <code>5 <view style="padding-left:5%;">if(p1.key<=p2.key>)</=p2.key></view></code><br>
+               <code>6 <view style="padding-left:9%;">temp=p1.next</view></code><br>
+               <code>7 <view style="padding-left:9%;">p1.next=L3.nil.next</view></code><br>
+               <code>8 <view style="padding-left:9%;">L3.nil.next=p1</view></code><br>
+               <code>9 <view style="padding-left:9%;">p1=temp</view></code><br>
+               <code>10 <view style="padding-left:5%;">if(p2.key< p1.key) </view></code><br>
+               <code>11 <view style="padding-left:9%;">temp=p2.next</view></code><br>
+               <code>12 <view style="padding-left:9%;">p2.next=L3.nil.next</view></code><br>
+               <code>13 <view style="padding-left:9%;">L3.nil.next=p2</view></code><br>
+               <code>14 <view style="padding-left:9%;">p2=temp</view></code><br>
+               <code>15 while p1!=L1.nil</code><br>
+                <code>16 <view style="padding-left:5%;">temp=p1.next</view></code><br>
+               <code>17 <view style="padding-left:5%;">p1.next=L3.nil.next</view></code><br>
+               <code>18 <view style="padding-left:5%;">L3.nil.next=p1</view></code><br>
+               <code>19 <view style="padding-left:5%;">p1=temp</view></code><br>
+                <code>20 while p2!=L2.nil</code><br>
+                <code>21 <view style="padding-left:5%;">temp=p2.next</view></code><br>
+               <code>22 <view style="padding-left:5%;">p2.next=L3.nil.next</view></code><br>
+               <code>23 <view style="padding-left:5%;">L3.nil.next=p2</view></code><br>
+               <code>24 <view style="padding-left:5%;">p2=temp</view></code><br>
+            </div>
+            <div>算法流程：
+                <div>初始化：哨兵L3.nil</div>
+                <div>循环合并：(在使用头插法进行插入时记得保留待插入结点的next指针，不然会破坏链表的结构)</div>
+                <ol style="padding-left:15%;">
+                      <li>当p1.key<=p2.key时，在L3.nil与L3.nil.next(上一个较小的元素)之间插入p1< li>
+                      <li>当p2.key< p1.key时，在L3.nil与L3.nil.next(上一个较小的元素)之间插入p2</li>
+                </=p2.key时，在L3.nil与L3.nil.next(上一个较小的元素)之间插入p1<></li></ol>
+                <div>
+                    合并剩余尾部：跳出时有两种情况，即L1遍历完或L2遍历完。<br>
+                    1 L1没有遍历完，继续进行遍历进行头插.<br>
+                    2 L2没有遍历完，继续进行遍历进行头插.<br>
+                    最后得到一个非递增的有序链表(也就是递减的链表)
+                </div>
+            </div>
         </li>
     
 </ol></body>
