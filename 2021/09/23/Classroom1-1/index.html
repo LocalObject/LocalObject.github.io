@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiao chong">
+
+
+
+
+
+<title>课堂练习 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">xiaochong</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">xiaochong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">课堂练习</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">xiao chong</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 23, 2021&nbsp;&nbsp;18:45:09</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Classroom/">Classroom</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id><a href="#" class="headerlink" title></a></h1><ol>
+<li><p>实验1</p>
+<ul>
+<li><p>（1）实验内容：回文数</p>
+</li>
+<li><p>（2）编写一个Java应用程序。实现下列功能：  </p>
+<p>  编写一个Java应用程序。用户从键盘输入一个1~99999之间的数，程序判断这个数是几位数，并判断这个数是否回文数。回文数是指将该数含有的数字逆序排列后得到的数和原数相同，例如12121、2113都是回文数。</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App1_1</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Scanner src=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">byte</span>[] buf=<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">5</span>];</span><br><span class="line">        <span class="keyword">int</span> n=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> length;</span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        String number=src.nextLine();<span class="number">213</span></span><br><span class="line">        buf=number.getBytes();</span><br><span class="line">        <span class="keyword">int</span> m=Integer.valueOf(number);</span><br><span class="line">        <span class="keyword">if</span>(m&lt;<span class="number">1</span>||m&gt;<span class="number">99999</span>)</span><br><span class="line">            System.out.println(<span class="string">&quot;number is error:1&lt;number&lt;9999&quot;</span>);</span><br><span class="line">        length=Integer.valueOf(number);</span><br><span class="line">        <span class="keyword">while</span>(length!=<span class="number">0</span>)&#123;</span><br><span class="line">            n++;</span><br><span class="line">            length/=<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n/<span class="number">2</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(buf[i-<span class="number">1</span>]!=buf[n-i]) </span><br><span class="line">                System.out.println(<span class="string">&quot;不是回文数&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i==n/<span class="number">2</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;是回文数的&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>实验2</p>
+<ul>
+<li>（1）实验内容：猜数字游戏</li>
+<li>（2）编写一个Java应用程序。实现下列功能：<ul>
+<li>   程序随机分配给客户一个1〜100之间的整数。</li>
+<li><pre><code>用户输入自己的猜测。
+</code></pre>
+</li>
+<li><pre><code>程序返回提示信息，提示信息分别是“猜大了” “猜小了”或“猜对了”。
+</code></pre>
+</li>
+<li>  用户可根据提示信息再次输入猜测，直到提示信息是“猜对了”。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App2_1</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Scanner src=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        Random r=<span class="keyword">new</span> Random();</span><br><span class="line">        <span class="keyword">int</span> number=r.nextInt(<span class="number">100</span>)+<span class="number">1</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入一个数：&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> n=src.nextInt();</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(n&gt;number)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;猜大了&quot;</span>);</span><br><span class="line">                System.out.println(<span class="string">&quot;请重新猜&quot;</span>);</span><br><span class="line">                n=src.nextInt();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(n&lt;number)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;猜小了&quot;</span>);</span><br><span class="line">                System.out.println(<span class="string">&quot;请重新猜&quot;</span>);</span><br><span class="line">                n=src.nextInt();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;猜对了:&quot;</span>+number);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>编写程序，按下图输出结果。</p>
+<ul>
+<li>程序要求：只能使用两个输出语句。<br><a href="https://sm.ms/image/H45a168XxoKns7N" target="_blank"><img src="https://i.loli.net/2021/09/23/H45a168XxoKns7N.png"></a>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App3_1</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Scanner src=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入一个数:&quot;</span>);</span><br><span class="line">        n=src.nextInt();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=i;j++)&#123;</span><br><span class="line">                System.out.print(i+<span class="string">&quot;*&quot;</span>+j+<span class="string">&quot;=&quot;</span>+i*j+<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.printf(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>编写程序，按下图输出结果</p>
+<ul>
+<li><a href="https://sm.ms/image/COfvanD8Wr2d3tc" target="_blank"><img src="https://i.loli.net/2021/09/23/COfvanD8Wr2d3tc.png" style="height:30%;width:100%;"></a>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.text.DecimalFormat;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App4_1</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Scanner src=<span class="keyword">new</span> Scanner(System.in); </span><br><span class="line">        Vector&lt;String&gt; strs=<span class="keyword">new</span> Vector&lt;&gt;();</span><br><span class="line">        Vector&lt;Double&gt; moneys=<span class="keyword">new</span> Vector&lt;&gt;();</span><br><span class="line">        Vector&lt;Integer&gt; numbers=<span class="keyword">new</span> Vector&lt;&gt;();</span><br><span class="line">        SimpleDateFormat simpleDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;日期: yyyy-MM-dd  kk:hh:ss  E&quot;</span>);</span><br><span class="line">        String format = simpleDateFormat.format(<span class="keyword">new</span> Date());</span><br><span class="line">        String str;</span><br><span class="line">        <span class="keyword">double</span> money;</span><br><span class="line">        <span class="keyword">int</span> number;  </span><br><span class="line">        <span class="keyword">double</span> sum=<span class="number">0</span>;</span><br><span class="line">        System.out.print(<span class="string">&quot;请输入商品名称(输入字母、数字用全角):&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;        </span><br><span class="line">            str=src.nextLine();</span><br><span class="line">            <span class="keyword">if</span>(str.equals(<span class="string">&quot;&quot;</span>)) <span class="keyword">break</span>;</span><br><span class="line">            strs.add(str);  </span><br><span class="line">            System.out.print(<span class="string">&quot;请输入商品单价:&quot;</span>);</span><br><span class="line">            money=src.nextDouble();</span><br><span class="line">            moneys.add(money);</span><br><span class="line">            System.out.print(<span class="string">&quot;请输入商品数量:&quot;</span>);</span><br><span class="line">            number=src.nextInt();    </span><br><span class="line">            numbers.add(number);</span><br><span class="line">            src.nextLine();</span><br><span class="line">            System.out.print(<span class="string">&quot;请输入商品名称(输入字母、数字用全角):&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;**************消费单***************&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;商品\t单价\t数量\t金额&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;----------------------------------&quot;</span>);</span><br><span class="line">        strs.trimToSize(); </span><br><span class="line">        numbers.trimToSize();</span><br><span class="line">        moneys.trimToSize(); </span><br><span class="line">        <span class="keyword">for</span>(String buf:strs)&#123;</span><br><span class="line">            <span class="keyword">int</span> i=strs.indexOf(buf);</span><br><span class="line">            sum+=moneys.get(i)*numbers.get(i);</span><br><span class="line">            String format1 = <span class="keyword">new</span> DecimalFormat(<span class="string">&quot;0.00&quot;</span>).format(moneys.get(i) * numbers.get(i));</span><br><span class="line">            System.out.print(strs.get(i)+<span class="string">&quot;\t&quot;</span>+moneys.get(i)+<span class="string">&quot;\t&quot;</span>+numbers.get(i)+<span class="string">&quot;\t&quot;</span>+format1+<span class="string">&quot;\n&quot;</span>); </span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;----------------------------------&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;总计金额&quot;</span>+<span class="keyword">new</span> DecimalFormat(<span class="string">&quot;0.00&quot;</span>).format(sum));</span><br><span class="line">        System.out.println( format);</span><br><span class="line">        System.out.println(<span class="string">&quot;**********************************&quot;</span>);</span><br><span class="line">        src.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>xiao chong</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2021/09/23/Classroom1-1/">http://example.com/2021/09/23/Classroom1-1/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Java/"># Java</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/09/20/test1-1/">二级考试计算机系统基础</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© xiao chong | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

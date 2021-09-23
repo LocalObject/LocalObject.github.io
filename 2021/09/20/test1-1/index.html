@@ -13,7 +13,7 @@
 
 
 
-<title>链表的算法设计1-2 | Hexo</title>
+<title>二级考试计算机系统基础 | Hexo</title>
 
 
 
@@ -127,11 +127,73 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">链表的算法设计1-2</h1>
+            <h1 class="post-title">二级考试计算机系统基础</h1>
             
                 <div class="post-meta">
                     
@@ -140,14 +202,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 18, 2021&nbsp;&nbsp;13:44:40</a>
+                        Date: <a href="#">September 20, 2021&nbsp;&nbsp;21:33:51</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/List/">List</a>
+                                <a href="/categories/Fundamentals-of-computer-system/">Fundamentals of computer system</a>
                             
                         </span>
                     
@@ -165,87 +227,11 @@
     <title>Document</title>
 </head>
 <body>
-    <ol>
-        <li>已经知道两个链表A和B分别表示两个集合，其元素递增排列。请设计算法求出两个集合A与B的交集
-        <div>
-            <code>List-Intersection(L1,L2)</code><br>
-            <code>1 new tail=L3.nil</code><br>
-            <code>2 p1=L1.nil.next</code><br>
-            <code>3 p2=L2.nil.next</code><br>
-            <code>4 while p1!=L1.nil and p2!=L2.nil</code><br>
-            <code>5 if p1.key < p2.key</code><br>
-            <code>6 <view style="padding:5%;">p1=p1.next</view></code><br>
-            <code>7 else if p2.key < p1.key</code><br>
-            <code>8 <view style="padding-left:5%;">p2=p2.next</view></code><br>
-            <code>9 else</code><br>
-            <code>10<view style="padding:5%;">temp=p1.next</view></code><br>
-            <code>11<view style="padding-left:5%;">p1=tail.next</view></code><br>
-             <code>12<view style="padding-left:5%;">tail.next=p1</view></code><br>
-              <code>13<view style="padding-left:5%;">tail=tail.next</view></code><br>
-               <code>14<view style="padding-left:5%;">p2=p2.next</view></code><br>
-            <code>15<view style="padding-left:5%;">p1=temp</view></code><br>
-        </div>
-        </li>
-        <li>
-            已经知道两个链表A和B分别表示两个集合，其元素递增排列。请设计算法求出两个集合A与B的差集(即仅由在A出现而不再B出现的元素所构成的集合)，并以同样的存储形式存储，同时返回元素的个数。
-            <div>
-                <code>Linked_Difference(L1,L2,count)</code><br>
-                <code>1 p1=L1.nil.next</code><br>
-                <code>2 p2=L2.nil.next</code><br>
-                <code>3 Tail=L1.nil</code><br>
-                <code>4  length=0</code><br>
-                <code>5 while p2!=L2.nil and p1!=L1.nil</code><br>
-                <code>6 <view style="padding-left:5%;">if p1.key==Tail.key</view></code><br>
-                <code>7 <view style="padding-left:9%;">Tail.next=p1.next</view></code><br>
-                 <code>8 <view style="padding-left:5%;">if p1.key< p2.key</view></code><br>
-                <code>9  <view style="padding-left:10%;">p1=p1.next</view></code><br>
-                <code>10 <view style="padding-left:9%;">Tail=Tail.next</view></code><br>
-                <code>11 <view style="padding-left:9%;">length = length + 1</view></code><br>
-                <code>12 <view style="padding-left:5%;">else if p1.key> p2.key</view></code><br>
-                <code>13 <view style="padding-left:9%;">p2=p2.next</view></code><br>
-                <code>14 <view style="padding-left:5%;">else</view></code><br>
-                <code>15 <view style="padding-left:9%;">p1=p1.next</view></code><br>
-                <code>16 <view style="padding-left:9%;">Tail.next=p1</view></code><br>
-                <code>17 <view style="padding-left:5%;">count=length</view></code><br>
-                <code>18 return L1</code>
-               <div>算法流程：
-                <div>初始化：让表尾指针引用L1的哨兵</div>
-                <div>循环合并：</div>
-                <ol style="padding-left:15%;">
-                      <li>当p1.key=Tail.key时，证明现在已经扫描过的LA中出现重复数据，把重复的结点删去,p1指向后继结点</li>
-                      <li>当p1.key< p2.ke时，证明p1不在LB中出现，只需要让p1指向下一个结点和让记录当前扫描过LA序列中p1的前驱结点</li>
-                      <li>当p2.key< p1.key时，证明p1不在LB中出现，让p2指向它的后继再次进行比较</li>
-                      <li>
-                          当p1.key=p2.key时，证明p1所指向的结点出现在LB中，需要把这个结点删除，Tail的next指向p1的后继，同时让p1指向它的后继结点进行下一轮的判断，
-                      </li>
-                </ol>
-                <div>循环结束：p1的序列已经遍历完或p2遍历完，无论哪种都已经完成LA-LB差集
-                <a href="https://sm.ms/image/QxDqrNomuzJg3sH" target="_blank"><img src="https://i.loli.net/2021/09/18/QxDqrNomuzJg3sH.jpg"></a>
-                </div>
-            </div>
-            </div>
-        </li>
-        <li>
-            设计算法将一个带头结点的单链表A分解为两个具有相同结构的链表B和C，其中B表的结点为A表中值小于零的结点，而C表的结点为A表中值大于零的结点(链表A中的元素为非零的整数，要求B、C表1利用表A的结点)
-            <div>
-                <code>List-Split(L1,L2)</code><br>
-                <code>1 p1=L1.nil.next</code><br>
-                <code>2 new n2=L2.nil</code><br>
-                <code>3 L3=L1.nil</code><br>
-                <code>4 while p1!=L1.nil</code><br>
-                <code>5 <view style="padding-left:5%;">if p1.key<=0< view></=0<></view></code><br>
-                <code>6 <view style="padding-left:8%;">L3=L3.next</view></code><br>
-                 <code>7 <view style="padding-left:8%;">p1=p1.next</view></code><br>
-                 <code>8 <view style="padding-left:5%;">else</view></code><br>
-                <code>9 <view style="padding-left:8%;">temp=p1.next</view></code><br>
-                 <code>10 <view style="padding-left:8%;">p1.next=p2.next</view></code><br>
-                 <code>11 <view style="padding-left:8%;">p2.next=p1</view></code><br>
-                 <code>12 <view style="padding-left:8%;">p2=p2.next</view></code><br>
-                 <code>13 <view style="padding-left:8%;">L3.next=temp</view></code><br>
-                 <code>14 <view style="padding-left:8%;">p1=temp</view></code><br>
-            </div>
-        </li>
-    </ol>
+<h1>动态规划</h1>
+<div>动态规划问题的⼀般形式就是求最值。动态规划其实是运筹学的⼀种最优化⽅法，只不过在计算机问题上应⽤⽐较多，⽐如说让你求最⻓递增⼦序列呀，最⼩编辑距离呀等等。既然是要求最值，核⼼问题是什么呢？求解动态规划的核⼼问题是穷举。因为要求最值，肯定要把所有可⾏的答案穷举出来，然后在其中找最值呗。
+动态规划就这么简单，就是穷举就完事了？我看到的动态规划问题都很难啊！
+⾸先，动态规划的穷举有点特别，因为这类问题存在「重叠⼦问题」，如果暴⼒穷举的话效率会极其低下，所以需要「备忘录」或者「DP table」来优化穷举过程，避免不必要的计算。
+⽽且，动态规划问题⼀定会具备「最优⼦结构」，才能通过⼦问题的最值得到原问题的最值。</div>
 </body>
 <style>
     .center{
@@ -296,7 +282,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2021/09/18/list1-3/">http://example.com/2021/09/18/list1-3/</a></span>
+                        <span><a href="http://example.com/2021/09/20/test1-1/">http://example.com/2021/09/20/test1-1/</a></span>
                     </p>
                 
                 
@@ -320,7 +306,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Data-Structure/"># Data-Structure</a>
+                        <a href="/tags/Fundamentals-of-computer-system/"># Fundamentals of computer system</a>
                     
                         
                 </span>
@@ -333,10 +319,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/09/20/test1-1/">二级考试计算机系统基础</a>
+                <a class="prev" rel="prev" href="/2021/09/23/Classroom1-1/">课堂练习</a>
             
             
-            <a class="next" rel="next" href="/2021/09/17/List1-2/">链表的算法设计1-1</a>
+            <a class="next" rel="next" href="/2021/09/18/list1-3/">链表的算法设计1-2</a>
             
         </section>
 
