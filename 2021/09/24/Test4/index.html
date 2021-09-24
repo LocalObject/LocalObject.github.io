@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiao chong">
+
+
+
+
+
+<title>Test4 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">xiaochong</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">xiaochong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Test4</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">xiao chong</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 24, 2021&nbsp;&nbsp;22:56:18</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/software-engineering/">software engineering</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id><a href="#" class="headerlink" title></a></h1><ol>
+<li><p><img src="/2021/09/24/Test4/1.bmp"></p>
+<ul>
+<li>系统结构图的扇出指的是一个模块直接调用的其他模块数，图中“某系统”模块的从属模块从“功能1”到“功能n”，所以图中的最大扇出数为n</li>
+</ul>
+</li>
+<li><p>软件需求规格说明应重点描述软件的目标，软件的功能需求、性能需求、外部接口、属性及约束条件等。功能需求是软件需求规格说明,给出软件要执行什么功能的详尽描述。性能需求是指定量地描述软件系统应满足的具体性能需求,即各种软件功能的速度、响应时间、恢复时间。外部接口指软件如何与人、系统的硬件及其他硬件和其他软件进行交互。属性是指与软件有关的质量属性，如正确性、可用性、可靠性、安全性、可维护性等。约束条件包括影响软件实现的各种设计约束,如使用的标准、编程语言、数据库完整性方针、资源限制、运行环境等方面的要求。</p>
+</li>
+<li><p>白盒测试的主要方法有逻辑覆盖、基本路径测试等；逻辑覆盖测试又包含语句覆盖、路径覆盖、判定覆盖、条件覆盖、判断-条件覆盖。</p>
+</li>
+<li><p><img src="/2021/09/24/Test4/2.bmp"></p>
+<ul>
+<li>扇入指调用一个给定模块的模块个数，扇出指一个给定模块调用的模块个数。本题中，第2层模块扇入数均为1，第3层中，n.1模块扇入数为3，所以最大扇入数为3。</li>
+</ul>
+</li>
+<li><p>软件测试过程一般按4个步骤进行，即单元测试、集成测试、验收测试（确认测试）和系统测试。</p>
+</li>
+<li><p>软件测试用例包括输入数据及其预期的输出结果。</p>
+</li>
+<li><p>结构化程序设计主要强调的是程序简明清晰，易读易懂，程序必须是可以理解的。结构化程序设计的基本原则是“清晰第一，效率第二”。</p>
+</li>
+<li><p><img src="/2021/09/24/Test4/3.bmp"></p>
+<ul>
+<li>系统结构图的宽度指的是整体控制跨度（最大模块数的层）的表示，图中，模块数最多的是第2层，即“功能1”到“功能n”的模块个数就是宽度，有n个，所以系统结构图的宽度为n。</li>
+</ul>
+</li>
+<li><p> 计算机软件是计算机系统中与硬件相互依存的一部分，是包括程序、数据以及相关文档的完整集合。</p>
+</li>
+<li><p>软件设计阶段，常见的过程设计工具有：图形工具（程序流程图、N-S图、PAD图、HIPO图），表格工具（判定表），语言工具（PDL）。</p>
+</li>
+<li><p>软件测试是保证软件质量的重要手段,其主要过程涵盖了整个软件生命期的过程，包括需求定义阶段的需求测试、编码阶段的单元测试、集成测试以及后期的确认测试、系统测试,验证软件是否合格、能否交付用户使用等；软件测试的目的是为了发现错误而执行程序的过程；程序调试的任务是诊断和改正程序中的错误。</p>
+</li>
+<li><p>黑盒测试方法主要有等价类划分法、边界值分析法和错误推测法。</p>
+</li>
+<li><p>在数据流图中，带有箭头的线段表示的是数据流。在程序流程图中，带有箭头的线段表示的是控制流。</p>
+</li>
+<li><p>软件需求规格说明应重点描述软件的目标，软件的功能需求、性能需求、外部接口、属性及约束条件等。</p>
+</li>
+</ol>
+<ol start="15">
+<li><p>系统结构图是描述软件结构的图形工具</p>
+</li>
+<li><p>数据流图应遵循以下构造规则和注意事项：①对加工处理建立唯一、层次性的编号，且每个加工处理通常要求既有输入又有输出。②数据存储之间不应有数据流。③数据流图的一致性。④父图、子图关系与平衡规则。相邻两层DFD之间具有父、子关系，子图代表了父图中某个加工的详细描述，父图表示了子图间的接口。子图个数不大于父图中的处理个数。所有子图的输入、输出数据流和父图中相应处理的输入、输出数据流必须一致。</p>
+</li>
+<li><p>集成测试时将模块组装成程序通常采用两种方式：非增量方式组装与增量方式组装。非增量方式也称为一次性组装方式；增量方式又分为自顶向下、自底向上、自顶向下与自底向上相结合的混合增量方法。</p>
+</li>
+<li><p>程序流程图是详细设计阶段使用的表达工具。</p>
+</li>
+<li><p>基本路径测试法的思想和步骤是，根据软件过程性描述中的控制流程确定程序的环路复杂性度量，用此度量定义基本路径集合，并由此导出一组测试用例对每一条独立执行路径进行测试，它是属于白盒测试且是动态测试。</p>
+</li>
+<li><p>数据流图是描述数据处理过程的工具，是需求理解的逻辑模型的图形表示，它直接支持系统的功能建模。</p>
+</li>
+<li><p>黑盒测试是对软件已经实现的功能是否满足需求进行测试和验证。黑盒测试完全不考虑程序内部的逻辑结构和内部特性，只根据程序的需求和功能规格说明，检查程序的功能是否符合它的功能说明。</p>
+</li>
+<li><p>单元测试主要针对模块的下列5个基本特性进行：①模块接口测试——测试通过模块的数据流。②局部数据结构测试。③重要的执行路径的检查。④出错处理测试。检查模块的错误处理功能。⑤影响以上各点及其他相关点的边界条件测试。</p>
+</li>
+<li><p>：结构化程序设计方法的主要原则可以概括为自顶向下，逐步求精，模块化，限制使用goto语句。</p>
+</li>
+<li><p>集成测试是测试和组装软件的过程，它是在把模块按照设计要求组装起来的同时进行测试，主要目的是发现与接口有关的错误。集成测试的依据是概要设计说明书。</p>
+</li>
+</ol>
+<p>25.软件设计的准则是:①提高模块独立性。②模块规模适中。③深度、宽度、扇出和扇入适当。④使模块的作用域在该模块的控制域内。⑤应减少模块的接口和界面的复杂性。⑥设计成单入口、单出口的模块。⑦设计功能可预测的模块。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>xiao chong</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2021/09/24/Test4/">http://example.com/2021/09/24/Test4/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/software-engineering/"># software engineering</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/09/24/Test5/">Test5</a>
+            
+            
+            <a class="next" rel="next" href="/2021/09/24/Test3/">Test3</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© xiao chong | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiao chong">
+
+
+
+
+
+<title>Test5 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">xiaochong</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">xiaochong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Test5</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">xiao chong</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 24, 2021&nbsp;&nbsp;22:56:22</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/data-structure/">data structure</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="计算机二级考试"><a href="#计算机二级考试" class="headerlink" title="计算机二级考试"></a>计算机二级考试</h1><ol>
+<li><p>某二叉树共有399个结点，其中有199个度为2的结点，则该二叉树中的叶子结点数为200</p>
+<ul>
+<li>度为n的树叶子结点 $N_0=1+0N_1+1N_1+…+n-1N_n \所以度为2的树的叶子结点N_0=N_2+1$</li>
+</ul>
+</li>
+<li><p>在长度为n的顺序表中查找一个元素，假设需要查找的元素一定在表中，并且元素出现在表中每个位置上的可能性是相同的，则在平均情况下需要的比较次数为 $$\frac{1}{n}\sum^n_{i=1}i=\frac{n\times(n+1)}{n\times2}=\frac{n+1}{2}$$</p>
+</li>
+<li><p>循环队列中，当front=rear时，不能确定队列满还是队列空，那么元素个数即为空或者满然而此时插入了一个元素，若此时队列为空，在队列为空的状态下，又插入一个元素，所以最后该队列中元素个数为1；若此时队列为满，不能再进行入队运算，这种情况称为“上溢”，此时算法结束。</p>
+</li>
+<li><p>在具有2n个结点的完全二叉树中，叶子结点个数为n个</p>
+<ul>
+<li>：由二叉树的定义可知，树中必定存在度为0的结点和度为2的结点，设度为0结点有a个，根据度为0的结点（即叶子结点）总比度为2的结点多一个，得度为2的结点有a-1个。再根据完全二叉树的定义，度为1的结点有0个或1个，假设度1结点为0个，a+0+a-1=2n，得2a=2n-1，由于结点个数必须为整数，假设不成立；当度为1的结点为1个时，a+1+a-1=2n，得a=n，即叶子结点个数为n。</li>
+</ul>
+</li>
+<li><p>在栈中，通常用指针top来指示栈顶的位置，用指针bottom指向栈底，栈顶指针top动态反应了栈中元素的变化情况；在循环队列中，队头指针和队尾指针的动态变化决定队列的长度；链式存储结构中，各数据结点的存储序号是不连续的，并且各结点在存储空间中的位置关系与逻辑关系也不一致，故头指针和尾指针或栈顶指针无法决定链表长度。</p>
+</li>
+<li><p>对长度为n的线性表排序，在最坏情况下，快速排序需要比较的次数为n(n－1)/2，顺序查找需要比较n次，寻找最大项需要比较n-1次，堆排序需要比较的次数为O(nlog2n)。</p>
+</li>
+<li><p>算法的空间复杂度是指执行这个算法所需要的内存空间，在许多实际问题中，为了减少算法所占的存储空间，通常采用压缩存储技术，以便尽量减少不必要的额外空间；由于在编程时要受到计算机系统运行环境的限制,因此,程序的编制通常不可能优于算法的设计；算法执行时所需要的计算机资源越多算法复杂度越高,因此算法的复杂度和问题规模成正比；算法设计时要考虑算法的复杂度，问题的规模越大越是如此。</p>
+</li>
+<li><p>简单选择排序是扫描整个线性表，从中选择最小元素，将它交换到表的最前面(这是它应有的位置)，然后对剩下的子表采用同样方法，直到子表为空；插入排序是指将无序序列中的各元素依次插入到已经有序的线性表中；冒泡排序和快速排序本质上是通过相邻数据元素的交换逐步消除线性表中的逆序，而快速排序是选出一个结点，然后将大于该结点的数据移到后面，将小于该结点的数据移到前面，所以会产生一个新的逆序。</p>
+</li>
+<li><p>循环队列为空的条件是队头指针和队尾指针相同，并且为空，即rear=front=NULL。</p>
+</li>
+<li><p>一个非空的数据结构满足以下两个条件：①有且只有一个根结点；②每个结点最多有一个前件，也最多有一个后件。则称该数据结构为线性结构；具有两个以上指针域的链式结构，只要不同结点的相同指针域的值均不同，则依然可能是线性结构。</p>
+</li>
+<li><p>在循环链表中，只要指出表中任何一个结点的位置，就可以从它出发访问到表中其他所有结点。</p>
+</li>
+<li><p>在快速排序中，每经过一次数据交换(或移动后)，能消除多个逆序。</p>
+</li>
+</ol>
+<ol start="13">
+<li><p>循环链表是另一种形式的链式存储结构，循环链表和循环队列是平级关系。</p>
+</li>
+<li><p>在循环队列中，初始状态为空，经入队和退队操作后，front=rear+1，那么此时队列元素个数为n-1，即50-1=49个.</p>
+</li>
+<li><p>设循环队列的存储空间为Q(1:m),初始状态为front=rear=m。经过一系列正常的操作后，front=1，rear=m。为了在该队列中寻找最大的元素，最坏情况下需要比较次数为m-2.</p>
+<ul>
+<li><p>该题中1&lt;m，即rear-front&gt;0，则该循环队列中的元素个数为m-1。此在该队列中寻找值最大的元素，在最坏情况下需要的比较次数为m-1-1=m-2。</p>
+</li>
+<li><p>循环队列中，rear指向队列中的队尾元素，front指向队头元素的前一个位置，在front指向的后一个位置和rear指向的位置之间，所有的元素均为队列中的元素。队列初始状态为空，当front=24，rear=25时，队列中共有25-24（尾指针-头指针）=1个元素。</p>
+</li>
+<li><p>循环队列中，rear指向队列中的队尾元素，front指向队头元素的前一个位置，在front指向的后一个位置和rear指向的位置之间，所有的元素均为队列中的元素。本题中front=25指向的后一个位置即为24，而rear=24，可得此循环队列为满。</p>
+</li>
+</ul>
+</li>
+<li><p>对长度为n的线性表排序，在最坏情况下，堆排序需要比较的次数为O(nlog2n)，二分法查找只需要比较log2n次，顺序查找需要比较n次，寻找最大项需要比较n-1次。</p>
+</li>
+<li><p>循环队列是队列的一种顺序存储结构。</p>
+</li>
+<li><p>一个非空的数据结构满足以下两个条件：①有且只有一个根结点；②每个结点最多有一个前件，也最多有一个后件。则称该数据结构为线性结构；能顺序存储的数据结构可以是线性结构也可以是非线性结构，例如树可以顺序存储数据，而树是非线性结构；双向链表是线性结构。</p>
+</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>xiao chong</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2021/09/24/Test5/">http://example.com/2021/09/24/Test5/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/data-structure/"># data structure</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/09/24/Test6/">Test6</a>
+            
+            
+            <a class="next" rel="next" href="/2021/09/24/Test4/">Test4</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© xiao chong | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

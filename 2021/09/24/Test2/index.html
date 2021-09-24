@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiao chong">
+
+
+
+
+
+<title>Test2 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">xiaochong</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">xiaochong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Test2</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">xiao chong</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 24, 2021&nbsp;&nbsp;22:52:45</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Program-error-correction/">Program error correction</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id><a href="#" class="headerlink" title></a></h1><ol>
+<li><p>fun: 利用插入排序法对字符串中的字符从小按到大的顺序进行排序。</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span>  <span class="title">insert</span><span class="params">(<span class="keyword">char</span>  *aa)</span></span></span><br><span class="line"><span class="function"></span>&#123;  <span class="keyword">int</span>  i,j,n;     <span class="keyword">char</span>  ch;</span><br><span class="line"><span class="comment">/**********found**********/</span></span><br><span class="line">n=<span class="built_in">strlen</span>(aa);</span><br><span class="line"><span class="keyword">for</span>( i=<span class="number">1</span>; i&lt;n;i++ ) &#123;</span><br><span class="line"><span class="comment">/**********found**********/</span></span><br><span class="line">    ch=aa[i];</span><br><span class="line">    j=i<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span> ((j&gt;=<span class="number">0</span>) &amp;&amp; ( ch&lt;aa[j] ))</span><br><span class="line">    &#123;   aa[j+<span class="number">1</span>]=aa[j];</span><br><span class="line">        j--;        </span><br><span class="line">    &#125;</span><br><span class="line">    aa[j+<span class="number">1</span>]=ch;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>fun: 计算s所指字符串中含有t所指字符串的数目，并作为函数值返回</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span>  <span class="title">fun</span><span class="params">(<span class="keyword">char</span>  *s,  <span class="keyword">char</span>  *t)</span></span></span><br><span class="line"><span class="function"></span>&#123;  <span class="keyword">int</span>  n;</span><br><span class="line"><span class="keyword">char</span>  *p , *r;</span><br><span class="line">n=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> ( *s )</span><br><span class="line">&#123;  p=s;</span><br><span class="line"><span class="comment">/*********found**********/</span></span><br><span class="line">    r=t;</span><br><span class="line">    <span class="keyword">while</span>(*r)</span><br><span class="line">        <span class="keyword">if</span>(*r==*p) &#123;  r++;  p++;  &#125;</span><br><span class="line">        <span class="keyword">else</span>  <span class="keyword">break</span>;</span><br><span class="line"><span class="comment">/*********found**********/</span></span><br><span class="line">    <span class="keyword">if</span>(*r== <span class="number">0</span>)</span><br><span class="line">        n++;</span><br><span class="line">    s++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span>  n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>fun: 找出n的所有因子，统计因子的个数，并判断n是否是“完全数”。当一个数的因子之和恰好等于这个数的本身时，就称为“完全数”。</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span>  <span class="title">fun</span><span class="params">(<span class="keyword">int</span>  n, <span class="keyword">int</span>  a[], <span class="keyword">int</span>  *k)</span></span></span><br><span class="line"><span class="function"></span>&#123;   <span class="keyword">int</span>  m=<span class="number">0</span>, i, t;</span><br><span class="line">    t = n;</span><br><span class="line"><span class="comment">/**********found**********/</span></span><br><span class="line">    <span class="keyword">for</span>( i=<span class="number">1</span>; i&lt;n; i++ )</span><br><span class="line">    <span class="keyword">if</span>(n%i==<span class="number">0</span>)</span><br><span class="line">    &#123;  a[m]=i;  m++;  t=t - i;  &#125;</span><br><span class="line"><span class="comment">/**********found**********/</span></span><br><span class="line">    *k=m;</span><br><span class="line"><span class="comment">/**********found**********/</span></span><br><span class="line">    <span class="keyword">if</span> ( t==<span class="number">0</span> )  <span class="keyword">return</span>  <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span>  <span class="keyword">return</span>  <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>fun: 判断输入的任何一个正整数n，是否等于某个连续正整数序列之和。若是，则输出所有可能的序列。否则输出“不能分解”</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">( <span class="keyword">int</span>  n )</span></span></span><br><span class="line"><span class="function"></span>&#123;  <span class="keyword">int</span>  j, b, c, m, flag=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (b=<span class="number">1</span>; b&lt;=n/<span class="number">2</span>; b++) &#123; </span><br><span class="line"><span class="comment">/**********found**********/</span></span><br><span class="line">        m=n;</span><br><span class="line">    c = b;</span><br><span class="line">    <span class="keyword">while</span> (m !=<span class="number">0</span> &amp;&amp; m&gt;=c) &#123;</span><br><span class="line"><span class="comment">/**********found**********/</span></span><br><span class="line">        m = m - c;    c++;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">/**********found**********/</span></span><br><span class="line">    <span class="keyword">if</span> ( m==<span class="number">0</span>)</span><br><span class="line">    &#123;  <span class="built_in">printf</span>(<span class="string">&quot;%d=&quot;</span>, n);</span><br><span class="line">        <span class="keyword">for</span> (j=b; j&lt;c<span class="number">-1</span>; j++)   <span class="built_in">printf</span>( <span class="string">&quot;%d+&quot;</span>, j  );</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, j);</span><br><span class="line">        flag=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(flag==<span class="number">0</span>)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;不能分解\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>调用fun函数输出字符串，当奇数次调用时要求把字符串中的小写字母转换成大写字母，偶数次调用时按输入字符串的逆序输出字符串</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span>   <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span>   <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span>   <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span> (disable:4996)</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">( <span class="keyword">char</span>  *s )</span></span></span><br><span class="line"><span class="function"></span>&#123;  <span class="keyword">int</span>  i;</span><br><span class="line"><span class="comment">/**********************found***********************/</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> n = <span class="number">1</span>;   </span><br><span class="line"><span class="keyword">if</span> ( n++ %<span class="number">2</span> )</span><br><span class="line"><span class="comment">/**********************found***********************/</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="built_in">strlen</span>(s);i++)    </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, <span class="built_in">islower</span>(s[i]) ? <span class="built_in">toupper</span>(s[i]) : s[i]);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="comment">/**********************found***********************/</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="built_in">strlen</span>(s)<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--)   </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, s[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="6">
+<li>fun:将字符串s1和s2合并形成新字符串s3，假定s1字符串的长度为L1，s2的第L2-i-1个字符插入到原s1的第i个字符后，如果s1比s2长，则s1剩余的部分按在s1中的顺序放在新表s3后，如果s2比s1长，则s2剩余的部分安在s2中的顺序的逆序放在新生成的s3后。 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">char</span> *s1, <span class="keyword">char</span> *s2, <span class="keyword">char</span> *s3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,L2;</span><br><span class="line">    L2=<span class="built_in">strlen</span>(s2);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>,j=<span class="number">0</span>;(s1[i]!=<span class="string">&#x27;\0&#x27;</span>)&amp;&amp;(s2[i]!=<span class="string">&#x27;\0&#x27;</span>);i++,j=j+<span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        s3[j]=s1[i];</span><br><span class="line"><span class="comment">/***********found**********/</span></span><br><span class="line">        s3[j+<span class="number">1</span>]=s2[L2<span class="number">-1</span>-i];</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">/***********found**********/</span></span><br><span class="line">    <span class="keyword">if</span>(s1[i]!=<span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span>(;s1[i]!=<span class="string">&#x27;\0&#x27;</span>;i++,j+=<span class="number">1</span>)</span><br><span class="line">            s3[j]=s1[i];</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (s2[i]!=<span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span>(;s2[i]!=<span class="string">&#x27;\0&#x27;</span>;i++,j++)</span><br><span class="line">            s3[j]=s2[L2<span class="number">-1</span>-i];</span><br><span class="line"><span class="comment">/***********found**********/</span></span><br><span class="line">    s3[j]=<span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>xiao chong</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2021/09/24/Test2/">http://example.com/2021/09/24/Test2/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Program-error-correction/"># Program error correction</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/09/24/Test3/">Test3</a>
+            
+            
+            <a class="next" rel="next" href="/2021/09/24/Test1/">Test1</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© xiao chong | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

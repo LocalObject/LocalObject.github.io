@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiao chong">
+
+
+
+
+
+<title>Test3 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">xiaochong</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">xiaochong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Test3</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">xiao chong</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 24, 2021&nbsp;&nbsp;22:54:17</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Fundamentals-of-computer-system/">Fundamentals of computer system</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <ol>
+<li>总线带宽是指总线的数据传输率</li>
+</ol>
+<ol start="2">
+<li><p>运行中的进程可以处在运行、就绪和等待三种状态之一。进程若已获得除CPU以外的所有运行所需资源，此时申请CPU得不到满足，依然处于就绪状态：正在运行的进程，因为某种原因而暂停，此时处于阻塞状态(也称等待状态、挂起状态)；进程获得除CPU以外的所有所需运行资源，并分配CPU给它，该进程将进入运行状态。</p>
+</li>
+<li><p>总线是连接计算机内部元件之间的通路。微机中总线一般有内部总线、系统总线和外部总线。内部总线是微机内部各外围芯片与处理器（CPU）之间的总线，用于芯片一级的互连；而系统总线是微机中各插件板与系统板之间的总线，用于插件板一级的互连；外部总线则是微机和外部设备之间的总线，微机作为一种设备，通过该总线和其他设备进行信息与数据交换，它用于设备一级的互连。</p>
+</li>
+<li><p>进程（Process）是计算机中的程序关于某数据集合上的一次运行活动（执行过程），是系统进行资源分配和调度的基本单位，是操作系统结构的基础。程序是一组计算机能识别和执行的指令。</p>
+</li>
+<li><p>进程具有动态性、并发性、独立性、异步性和交往性5个基本特征，并发性和动态性是两个重要属性。 动态性是进程最基本的特性，可表现为由创建而产生，由调度而执行，因得不到资源而暂停执行，以及由撤销而消亡，因而进程由一定的生命期；而程序只是一组有序指令的集合，是静态实体；并发性是进程的重要特征，同时也是OS的重要特征。引入进程的目的正是为了使其程序能和其它建立了进程的程序并发执行，而程序本身是不能并发执行的。</p>
+</li>
+<li><p>进程控制块(Process Contro1 B1ock，简称PCB)是用来记录进程状态及其他相关信息的数据结构,PCB是进程存在的唯一标志，PCB存在则进程存在。系统创建进程时会产生一个PCB，撤销进程时，PCB也自动消失。</p>
+</li>
+<li><p>计算机地址位数的最大容量决定了虚拟内存的最大容量</p>
+</li>
+<li><p>通道是一个独立于CPU的，专门管理I/O的处理机，它控制设备与内存直接进行数据交换。它有自己的通道指令，这些通道指令由CPU启动，并在操作结束时向CPU发出中断信号。通道控制方式可以做到一个通道控制多台设备与内存进行数据交换。因而，通道方式进一步减轻了CPU的工作负担，增加了计算机系统的并行工作程度。</p>
+</li>
+<li><p>由于CPU同时刻只能执行一个进程，如果我们不加以控制的话，一个进程可能使用CPU直到运行结束，于是出现了操作系统调度器，而进程也成为了调度单位.在这里就出现了并发的概念。在计算机中不可能只有一个进程，因此操作系统需要为这些进程合理分配资源，单CPU也可允许多个进程并发执行。程序的执行实例被称为进程(process)，一个程序可以对应多个进程，但多个程序不能对应一个进程。CPU发出指令后，调用的是进程不是程序</p>
+</li>
+<li><p>CPU每取出并执行一条指令所需的全部时间叫指令周期；机器周期是在同步控制的机器中，执行指令周期中一步相对完整的操作（指令步）所需时间，CPU取指令一般是在存储器中进行取的，因此一般标准是CPU访问存储器一次所需要的时间。</p>
+</li>
+<li><p>进程借助创建原语实现创建一个新进程；阻塞进程原语用来使当前进程让出CPU进入等待队列，并设置进程为阻塞状态；唤醒进程原语把进程从等待队列里移出到就绪队列并设置进程为就绪状态；进程撤销，也叫终止进程，当进程完成任务或在执行的过程中发生异常时，系统将调用进程终止原语来终止该进程。</p>
+</li>
+<li><p>虚拟存储器(Virtual Memory)，在具有层次结构存储器的计算机系统中，自动实现部分装入和部分替换功能，能从逻辑上为用户提供一个比物理贮存容量大得多，可寻址的“主存储器”。虚拟存储区的容量与物理主存大小无关，而受限于计算机的地址结构和可用磁盘容量。</p>
+</li>
+<li><p>低级调度：又称进程调度。其主要功能是根据一定的算法将CPU分派给就绪队列中的一个进程。执行低级调度功能的程序称做进程调度程序，由它实现 CPU在进程间的切换。</p>
+</li>
+<li><p>多道程序系统是在计算机内存中同时存放几道相互独立的程序，使它们在管理程序控制之下，相互穿插的运行。分时操作系统是指在一台主机上连接多个带有显示器和键盘的终端，同时允许多个用户通过主机的终端，以交互方式使用计算机，共享主机中的资源。分时操作系统是一个多用户交互式操作系统。批处理系统，又名批处理操作系统。批处理是指用户将一批作业提交给操作系统后就不再干预，由操作系统控制它们自动运行。一个实时系统是指计算的正确性不仅取决于程序的逻辑正确性，也取决于结果产生的时间，如果系统的时间约束条件得不到满足，将会发生系统出错。所谓“实时”，是表示“及时”，而实时系统是指系统能及时响应外部事件的请求，在规定的时间内完成对该事件的处理（过程控制），并控制所有实时任务协调一致的运行。</p>
+</li>
+<li><p>静态重定位是指在程序开始运行前，程序中的各个地址有关的项均已完成重定位，地址变换通常是在装入时一次完成的，以后不再改变。动态重定位即在程序运行过程中要访问数据时再进行逻辑地址与物理地址的变换（即在逐条指令执行时完成地址映射。请求分段式存储管理、请求分页式存储管理、请求段页式存储管理采用的是动态重定位技术。</p>
+</li>
+<li><p>动态重定位即在程序运行过程中要访问数据时再进行逻辑地址与物理地址的变换（即在逐条指令执行时完成地址映射。静态重定位是指在程序开始运行前，程序中的各个地址有关的项均已完成重定位，地址变换通常是在装入时一次完成的，以后不再改变。分页式存储管理、段页式存储管理、可变分区存储管理采用的是静态重定位技术。</p>
+</li>
+<li><p>直接寻址：直接给出操作数的真实地址。隐含寻址：操作数地址不明显的给出，隐藏在指令中。给出的不是操作数的地址，而是操作数的本身。间接寻址：给出操作数有效地址所在的存储单元的地址。操作数作为指令的一部分而直接写在指令中，这种操作数称为立即数，这种寻址方式也就称为立即数寻址方式；</p>
+</li>
+<li><p>分时操作系统是指在一台主机上连接多个带有显示器和键盘的终端，同时允许多个用户通过主机的终端，以交互方式使用计算机，共享主机中的资源。分时操作系统是一个多用户交互式操作系统。批处理系统，又名批处理操作系统。批处理是指用户将一批作业提交给操作系统后就不再干预，由操作系统控制它们自动运行。一个实时系统是指计算的正确性不仅取决于程序的逻辑正确性，也取决于结果产生的时间，如果系统的时间约束条件得不到满足，将会发生系统出错。所谓“实时”，是表示“及时”，而实时系统是指系统能及时响应外部事件的请求，在规定的时间内完成对该事件的处理（过程控制），并控制所有实时任务协调一致的运行。分布式软件系统，是支持分布式处理的软件系统，是在由通信网络互联的多处理机体系结构上执行任务的系统。</p>
+</li>
+<li><p>定点数包括正数和负数，正数的反码与原码相同，负数原码的各位取反即是反码；正数的补码与原码相同，反码的最后一位上加1后即是补码；正数和负数，其补码的符号位取反即是偏移码。</p>
+</li>
+<li><p>常用的连续存储管理技术有固定分区存储管理和可变分区存储管理。</p>
+</li>
+<li><p>I/O方式中的程序查询方式是指当CPU需要执行I/O操作时，程序将主动查询I/O设备是否准备好。</p>
+</li>
+<li><p>处于阻塞状态的进程，当阻塞原因解除后即进入就绪态；进程一经创建，进入就绪态；运行态的进程时间片用完后，转而进入就绪态，并非一直运行。</p>
+</li>
+<li><p>进程调度是把CPU分配给处于就绪态的进程；各个进程的顺序是不固定的，存在相互制约的关系；程序与其执行过程不存在一一对应。</p>
+</li>
+<li><p>分布式操作系统，是支持分布式处理的操作系统，是在由通信网络互联的多处理机体系结构上执行任务的系统。由多台分散的计算机经网络连接而成。</p>
+</li>
+<li><p>：I/O方式中的通道用于设备与内存（主存）进行传输数据。</p>
+</li>
+<li><p>分时操作系统具有以下特点：交互性、独立性、及时性与同时性</p>
+</li>
+<li><p>一个实时系统是指计算的正确性不仅取决于程序的逻辑正确性，也取决于结果产生的时间，如果系统的时间约束条件得不到满足，将会发生系统出错。所谓“实时”，是表示“及时”，而实时系统是指系统能及时响应外部事件的请求，在规定的时间内完成对该事件的处理（过程控制），并控制所有实时任务协调一致的运行。</p>
+</li>
+</ol>
+<ol start="28">
+<li><p>通常认为计算机主机包括CPU和主存储器</p>
+</li>
+<li><p>请求分页或请求分段式存储管理主要采用虚拟存储管理技术。</p>
+</li>
+<li><p>进程一旦创建，转入就绪态；处于就绪态的进程可以有多个；运行态的进程当时间片用完后转入就绪态。</p>
+</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>xiao chong</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2021/09/24/Test3/">http://example.com/2021/09/24/Test3/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Fundamentals-of-computer-system/"># Fundamentals of computer system</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/09/24/Test4/">Test4</a>
+            
+            
+            <a class="next" rel="next" href="/2021/09/24/Test2/">Test2</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© xiao chong | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
