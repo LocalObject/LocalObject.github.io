@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiao chong">
+
+
+
+
+
+<title>ArrayList实现 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">xiaochong</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">xiaochong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ArrayList实现</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">xiao chong</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 9, 2021&nbsp;&nbsp;18:07:25</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/ArrayList/">ArrayList</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><ul>
+<li>线性表 是具有 n个相同类型元素的有限序列($n&gt;=0$)</li>
+<li>常见的线性表有<ul>
+<li>数组</li>
+<li>链表</li>
+<li>栈</li>
+<li>队列</li>
+<li>哈希表(散列表)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="数组-Array"><a href="#数组-Array" class="headerlink" title="数组(Array)"></a>数组(Array)</h2><ul>
+<li><p>数组是一种顺序存储的线性表，所有元素的内存地址是连续的</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] array=<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>  <img src="https://i.loli.net/2021/10/09/3ATBYzivrwl7Z2k.jpg" alt="1.jpg"><br>在Java中，array是变量存储在栈空间内的，new是在堆空间上开辟一段连续的内存，然后把引用返回给array保存使用。</p>
+</li>
+<li><p>在很多编程语言中，数组都有一个致命的缺点：</p>
+<ul>
+<li>无法动态修改容量</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id><a href="#" class="headerlink" title></a></h2><ol>
+<li><p>动态数组(Dynamic Array)接口设计</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">List</span> &lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//indexOf查找不到返回的值</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ELEMENT_NOT_FOUND = -<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//可以供外界使用</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;                     <span class="comment">//元素的数量</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span>；             <span class="comment">//是否为空</span></span></span><br><span class="line"><span class="function">    <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(E element)</span></span>;    <span class="comment">//是否包含某个元素</span></span><br><span class="line">    <span class="function">E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span></span>;               <span class="comment">//返回index位置的元素</span></span><br><span class="line">    <span class="function">E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index,E element)</span></span>;     <span class="comment">//设置index位置的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index,E element)</span></span>;  <span class="comment">//往index位置添加元素</span></span><br><span class="line">    <span class="function">E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span></span>;            <span class="comment">//删除index位置对应的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(E element)</span></span>;         <span class="comment">//查看元素的位置</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>;                   <span class="comment">//清楚所有的元素  </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>AbstractList 存放一些公共的方法。只要子类继承它，就可以拥有这些方法，并要求实现List接口</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size==<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(E element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> indexOf((element))!=ELEMENT_NOT_FOUND;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(E element)</span> </span>&#123;</span><br><span class="line">        add(size,element);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">outOfBounds</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        <span class="comment">//抛出异常</span></span><br><span class="line">        <span class="keyword">throw</span>  <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">&quot;Index:&quot;</span>+index+<span class="string">&quot;,Size:&quot;</span>+size);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">rangeCheck</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        <span class="comment">//检查index是否正确</span></span><br><span class="line">        <span class="keyword">if</span>(index&lt;<span class="number">0</span>||index&gt;=size)&#123;</span><br><span class="line">            outOfBounds(index);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">rangeCheckForAdd</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        <span class="comment">//检查添加的index位置是否正确</span></span><br><span class="line">        <span class="keyword">if</span>(index&lt;<span class="number">0</span>||index&gt;size)</span><br><span class="line">        &#123;</span><br><span class="line">            outOfBounds(index);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>ArrayList    实现动态数组</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;   <span class="comment">//元素的数量</span></span><br><span class="line">    <span class="keyword">private</span> T[] elements;   <span class="comment">//所有元素</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>; <span class="comment">//默认数组大小</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(DEFAULT_CAPACITY);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//接收一个capacity，创建一个大小为capacity数组</span></span><br><span class="line">        capacity = (capacity &lt; DEFAULT_CAPACITY) ? DEFAULT_CAPACITY : capacity;</span><br><span class="line">        elements = (T[]) <span class="keyword">new</span> Object[capacity];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, T element)</span></span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index,T element)</span></span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(T element)</span></span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureCapacity</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span>  <span class="title">trim</span><span class="params">()</span></span>&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><ul>
+<li><strong>Get:</strong> 返回index位置的元素<ul>
+<li>ArrayList数组是用一段连续的内存空间开辟的数组，成员变量elements保存这段连续内存空间的基址，我们只需要通过元素的下标就可以直接访问到其元素的位置，支持随机访问。</li>
+<li>我们要做的操作也很简单，只需要检查以下index是否正确，然后通过elements[index]返回元素。  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line">    <span class="keyword">return</span> elements[index];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度为$\bigcirc(1)$  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>Set:</strong> 设置index位置的元素</p>
+<ul>
+<li>同样Set方法也很简单，只需要检查所设置的下标index是否正确，然后通过elements[index]设置新值。  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, T element)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line">    T old = elements[index];</span><br><span class="line">    elements[index] = element;</span><br><span class="line">    <span class="keyword">return</span> old;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度为$\bigcirc(1)$  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Add:</strong> 往index位置添加元素</p>
+<ul>
+<li>  在AbstractList中默认提供往数组尾添加元素，这种情况最简单的，只需要elements[index]=element;同时对size加一即可。</li>
+<li>用户需要再已经存储元素的末尾之前插入元素，就需要对插入之后的元素每个往后移动一个位置，给index处腾空。</li>
+<li>再添加之前需要对当前数组进行一次ensureCapacity，根据情况进行相应的扩容。<br><img src="https://i.loli.net/2021/10/09/tdj7qZNFMRvXJ9p.jpg" alt="2.jpg">  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index,T element)</span></span>&#123;</span><br><span class="line">    <span class="comment">//if(element==null) return;  //不想存储空</span></span><br><span class="line">    rangeCheckForAdd(index);</span><br><span class="line">    ensureCapacity(size+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=size;i&gt;index;i--)&#123;</span><br><span class="line">        elements[i]=elements[i-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    elements[index]=element;</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>最坏时间复杂度（往index=0处进行插入）：$\Theta(n)$</li>
+<li>平均时间复杂度:<ul>
+<li>设置index={0,1,…,n}</li>
+<li>在每个位置上的概率一样都为$\frac{1}{n}$</li>
+<li>$平均移动次数:\frac{1}{n}\sum_{i=0}^{n}(n-i)=\frac{(n+1)}{2}$</li>
+<li>$\bigcirc(n)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Remove:</strong> 删除index位置对应的元素</p>
+<ul>
+<li>删除index处的元素，只需要其后面的所有元素向前移动覆盖就可把其删除，但注意的是需要把原数组最后一个位置赋值为null，不然数组会保留这份末尾数据的引用，会有多个变量引用这段内存，这段内存无法被释放</li>
+<li>在进行删除操作后，数组的容量可能会大于存储数量很多，造成空间的浪费，可以根据需求回收内存，缩小数组的容量，进行trim<br>  <img src="https://i.loli.net/2021/10/09/MjrKd2pgLayOqH5.jpg" alt="3.jpg">  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line">    T old=elements[index];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=index+<span class="number">1</span>;i&lt;size;i++)&#123;</span><br><span class="line">        elements[i-<span class="number">1</span>]=elements[i];</span><br><span class="line">    &#125;</span><br><span class="line">    elements[--size]=<span class="keyword">null</span>;</span><br><span class="line">    trim();</span><br><span class="line">    <span class="keyword">return</span> old;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>平均时间复杂度:<ul>
+<li>设置index={0,1,…,n}</li>
+<li>在位置上的概率一样都为$\frac{1}{n}$</li>
+<li>$平均移动次数:\frac{1}{n}\sum_{i=0}^{n}(n-i)=\frac{(n+1)}{2}$</li>
+<li>$\bigcirc(n)$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>indexOf:</strong> 查看元素的位置</p>
+<ul>
+<li>在进行比较时，优先考虑用quuals方法，因为用的是泛型，我们设计者是不知道它们如何比较大小的，需要用户去实现比较的逻辑</li>
+<li>如果你的设计允许存储null，那么在寻找之前需要判断。不然在调用equals方法会报空指针错误。  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(T element)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(element==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (elements[i]==<span class="keyword">null</span>) <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (element.equals(elements[i])) <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ELEMENT_NOT_FOUND;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度：$\bigcirc(n)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Clear():</strong> 清楚所有的元素  </p>
+<ul>
+<li>正常来说可以把size设置为0，我们就可以不对里面的元素进行使用，但如果是存储的是对象，对象是被数组引用中的，无法被JVM释放掉，就会显得浪费空间。所以就需要遍历把每个元素置为null</li>
+<li>有一种巧妙的方法是直接给elements赋值一个新的空数组，同时把size置为0，在JVM中，垃圾回收机制会回收掉没有被引用那段空间  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    for(int i=0;i&lt;size;i++)&#123;</span></span><br><span class="line"><span class="comment">        elements[i]=null;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    elements = (T[]) <span class="keyword">new</span> Object[DEFAULT_CAPACITY];</span><br><span class="line">    <span class="keyword">this</span>.size=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度为$\bigcirc(1)$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="如何进行动态数组扩容"><a href="#如何进行动态数组扩容" class="headerlink" title="如何进行动态数组扩容"></a>如何进行动态数组扩容</h3><ul>
+<li>创建一个新的数组，扩容为多少，设计者自行设计  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureCapacity</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> oldCapacity=elements.length;</span><br><span class="line">        <span class="comment">//如果旧容量还能装下元素,则不需要扩容</span></span><br><span class="line">        <span class="keyword">if</span>(oldCapacity&gt;=capacity)   <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//新容量为旧容量的1.5倍</span></span><br><span class="line">        <span class="keyword">int</span> newCapacity=oldCapacity+(oldCapacity&gt;&gt;<span class="number">1</span>);</span><br><span class="line">        T[] newElements= (T[]) <span class="keyword">new</span> Object[newCapacity];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;size;i++)&#123;        <span class="comment">//拷贝赋值</span></span><br><span class="line">            newElements[i]=elements[i];</span><br><span class="line">        &#125;</span><br><span class="line">        elements=newElements;</span><br><span class="line">        System.out.println(oldCapacity+<span class="string">&quot;扩容为&quot;</span>+newCapacity);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="如何进行收缩"><a href="#如何进行收缩" class="headerlink" title="如何进行收缩"></a>如何进行收缩</h3><ul>
+<li><p>在进行缩容时要考虑缩小的倍数，一般用右移进行除法效率更高</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span>  <span class="title">trim</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> capacity=elements.length;</span><br><span class="line">    <span class="keyword">int</span> newCapacity=capacity&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//如果size大于原先容量的一半，或者缩小容量后的新容量小于设计者的DEFAULT_CAPACITY默认初始容量，就不进行缩容。</span></span><br><span class="line">    <span class="keyword">if</span>(size&gt;=(newCapacity)||capacity&lt;=DEFAULT_CAPACITY) <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">//剩余空间还有很多</span></span><br><span class="line"></span><br><span class="line">    T[] newElements= (T[]) <span class="keyword">new</span> Object[newCapacity];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;size;i++)&#123;</span><br><span class="line">        newElements[i]=elements[i];</span><br><span class="line">    &#125;</span><br><span class="line">    elements=newElements;</span><br><span class="line">    System.out.println(capacity+<span class="string">&quot;缩容为&quot;</span>+newCapacity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>如果扩容倍数，缩容时机设计不得当，有可能会导致复杂震荡（反复扩容和缩容</p>
+<ul>
+<li>只要扩容倍数与缩容倍数等于1就会有这种明显的震荡</li>
+</ul>
+</li>
+<li><p>对象数组</p>
+<ul>
+<li>Object[] objects=new Object[6];<br><img src="https://i.loli.net/2021/10/09/ZI6p3DzeKsQqnXE.jpg" alt="4.jpg"></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>xiao chong</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2021/10/09/ArrayList1/">http://example.com/2021/10/09/ArrayList1/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/ArrayList-Java/"># ArrayList Java</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/10/09/ArrayList2/">ArrayList源码</a>
+            
+            
+            <a class="next" rel="next" href="/2021/09/24/Test8/">Test8</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© xiao chong | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
