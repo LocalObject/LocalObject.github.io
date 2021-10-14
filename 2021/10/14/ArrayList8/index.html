@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiao chong">
+
+
+
+
+
+<title>C++实现动态数组ArrayList | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">xiaochong</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">xiaochong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">C++实现动态数组ArrayList</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">xiao chong</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 14, 2021&nbsp;&nbsp;23:34:14</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/ArrayList/">ArrayList</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="动态数组"><a href="#动态数组" class="headerlink" title="动态数组"></a>动态数组</h1><ul>
+<li>采用类模板动态数组</li>
+<li>模板在编译时必须拿到完整的类型，所以声明定义一般都得再头文件内<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>	//动态数组</span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="meta">#<span class="meta-keyword">define</span> EMPTY_ELEMENTDATA  nullptr			<span class="comment">//空数组实例</span></span></span><br><span class="line">		<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>;		<span class="comment">//默认容量</span></span><br><span class="line">		<span class="keyword">int</span> size=<span class="number">0</span>;									<span class="comment">//元素数量</span></span><br><span class="line">		E* elements= EMPTY_ELEMENTDATA;				<span class="comment">//元素数组</span></span><br><span class="line">		<span class="keyword">int</span> length=<span class="number">0</span>;								<span class="comment">//数组长度</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">//有参构造，传入Capacity，会根据Capacity大小创建数组</span></span><br><span class="line">		<span class="function"><span class="keyword">inline</span>	<span class="title">ArrayList</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (initialCapacity &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">this</span>-&gt;elements = <span class="keyword">new</span> E[initialCapacity] ;</span><br><span class="line">				length = initialCapacity;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(initialCapacity==<span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">this</span>-&gt;elements = EMPTY_ELEMENTDATA;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">//...抛出异常</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//无参构造数组为空</span></span><br><span class="line">		<span class="keyword">inline</span> <span class="built_in">ArrayList</span>() &#123;</span><br><span class="line">			<span class="keyword">this</span>-&gt;elements = EMPTY_ELEMENTDATA;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//list死亡释放</span></span><br><span class="line">		~<span class="built_in">ArrayList</span>() &#123;</span><br><span class="line">			<span class="keyword">delete</span>[] elements;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">//返回数组元素</span></span><br><span class="line">		<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> size;						</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//判断数组是否为空</span></span><br><span class="line">		<span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> size == <span class="number">0</span>;					</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//是否包含元素 element</span></span><br><span class="line">		<span class="function"><span class="keyword">bool</span> <span class="title">contains</span><span class="params">(E element)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="built_in">indexOf</span>(element) &gt;= <span class="number">0</span>;		</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//返回元素element的索引</span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(E element)</span> </span>&#123;				</span><br><span class="line">			<span class="keyword">return</span> <span class="built_in">indexOfRange</span>(element, <span class="number">0</span>, size);	</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//返回index索引处元素</span></span><br><span class="line">		<span class="function">E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;					</span><br><span class="line">			<span class="built_in">checkIndex</span>(index);</span><br><span class="line">			<span class="keyword">return</span> elements[index];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//添加元素</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">			<span class="built_in">add</span>(e, elements, size);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//设置index索引处元素，返回旧值</span></span><br><span class="line">		<span class="function">E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E element)</span></span>;</span><br><span class="line">		<span class="comment">//从start开始直到end范围查找element</span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">indexOfRange</span><span class="params">(E element, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span></span>;</span><br><span class="line">		<span class="comment">//往index处添加element</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span></span>;</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span>   MAX_VALUE =INT_MAX;						<span class="comment">//int类型最大值</span></span><br><span class="line">		<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> MAX_ARRAY_SIZE = MAX_VALUE - <span class="number">8</span>;			<span class="comment">//最大数组容量</span></span><br><span class="line">		<span class="comment">//添加元素</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(E e, E* elementData, <span class="keyword">int</span> s)</span></span>;</span><br><span class="line">		<span class="comment">//扩容</span></span><br><span class="line">		<span class="function">E* <span class="title">grow</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="comment">//扩容</span></span><br><span class="line">		<span class="function">E* <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span></span>;</span><br><span class="line">		<span class="comment">//扩容容量</span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">newCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span></span>;</span><br><span class="line">		<span class="comment">//返回容量</span></span><br><span class="line">		<span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hugeCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span></span>;</span><br><span class="line">		<span class="comment">//拷贝数组</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">arraycopy</span><span class="params">(E* elements1, <span class="keyword">int</span> start1, E* elements2, <span class="keyword">int</span> start2, <span class="keyword">int</span> count)</span></span>;</span><br><span class="line">		<span class="comment">//创建新数组并拷贝elementDate所有元素，并返回</span></span><br><span class="line">		<span class="function">E* <span class="title">copyOf</span><span class="params">(E* elementDate,<span class="keyword">int</span> capacity)</span></span>;</span><br><span class="line">		<span class="comment">//检查添加</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">rangeCheckForAdd</span><span class="params">(<span class="keyword">int</span> index)</span></span>;</span><br><span class="line">		<span class="comment">//检查索引</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">checkIndex</span><span class="params">(<span class="keyword">int</span> index)</span></span>;</span><br><span class="line">		<span class="comment">//异常处理</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">outOfBounds</span><span class="params">(<span class="keyword">int</span> index)</span></span>;</span><br><span class="line">		<span class="comment">//返回最大值</span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> val, <span class="keyword">int</span> va2)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> val &gt; va2 ? val : va2;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="indexOfRange"><a href="#indexOfRange" class="headerlink" title="indexOfRange"></a>indexOfRange</h2><ul>
+<li>从start到end范围寻找元素element<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line"><span class="keyword">int</span> ArrayList&lt;E&gt;::<span class="built_in">indexOfRange</span>(E element, <span class="keyword">int</span> start, <span class="keyword">int</span> end) &#123;</span><br><span class="line">    E* es = elements;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt; end; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (es[i] == element)</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><ul>
+<li>保存旧值赋值新值并返回<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line">E ArrayList&lt;E&gt;::<span class="built_in">set</span>(<span class="keyword">int</span> index, E element) &#123;</span><br><span class="line">    E oldValue = elements[index];</span><br><span class="line">    elements[index] = element;</span><br><span class="line">    <span class="keyword">return</span> oldValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="add"><a href="#add" class="headerlink" title="add"></a>add</h2></li>
+<li>扩容时机：当数组满的时候,与Java不同的是，在我们扩容后要对旧数组进行释放，而且要用delete[] 数组方式释放，因为在new E[]时候，会在内存保存一个值，他记录你创建的容量，在进行调用delete []时候会根据这个值进行相次数E的析构函数。</li>
+<li>扩容为原来的1.5倍。</li>
+<li>如果在使用的时候用的是你自己创建的类型，请设计好相对应的析构函数，防止内存泄漏。</li>
+<li>使用方式:如果你不想根据索引值添加，只想在默认数组尾添加，只需要传入添加的元素即可。如果想根据你的索引添加元素，则索引必须满足0~size</li>
+<li>数组索引从0开始<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line"><span class="keyword">void</span> ArrayList&lt;E&gt;::<span class="built_in">add</span>(E e, E* elementData, <span class="keyword">int</span> s) &#123;</span><br><span class="line">    <span class="keyword">if</span> (s == length)</span><br><span class="line">    &#123;</span><br><span class="line">        E* oldelements = elements;</span><br><span class="line">        elements = <span class="built_in">grow</span>();</span><br><span class="line">        <span class="keyword">delete</span>[] oldelements;</span><br><span class="line">    &#125;</span><br><span class="line">    elementData[s] = e;</span><br><span class="line">    size = s + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line"><span class="keyword">void</span> ArrayList&lt;E&gt;::<span class="built_in">add</span>(<span class="keyword">int</span> index, E element) &#123;</span><br><span class="line">    <span class="built_in">rangeCheckForAdd</span>(index);</span><br><span class="line">    <span class="keyword">int</span> s;</span><br><span class="line">    E* elementData=elements;</span><br><span class="line">    <span class="keyword">if</span> ((s = size) == length)</span><br><span class="line">    &#123;</span><br><span class="line">        E* oldelements = elements;</span><br><span class="line">        elements = <span class="built_in">grow</span>();</span><br><span class="line">        <span class="keyword">delete</span>[] oldelements;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">arraycopy</span>(elementData, index, elementData, index + <span class="number">1</span>, s - index);</span><br><span class="line">    elementData[index] = element;</span><br><span class="line">    size = s + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="arraycopy"><a href="#arraycopy" class="headerlink" title="arraycopy"></a>arraycopy</h2><ul>
+<li>这里我所设计的arraycopy只是简单满足一下上面进行数组拷贝，在根据索引插入元素时，会让其索引处到元素尾整体往后移动一格单位。同时我也不改变elements的指针，所以上面我就只用拷贝从索引处开始拷贝元素到索引后一位的位置起。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line"><span class="keyword">void</span> ArrayList&lt;E&gt;::<span class="built_in">arraycopy</span>(E* elements1, <span class="keyword">int</span> start1, E* elements2, <span class="keyword">int</span> start2, <span class="keyword">int</span> count) &#123;</span><br><span class="line">    <span class="keyword">int</span> n1 = start1 + count<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> n2 = start2 + count<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(n1&gt;start1)</span><br><span class="line">    &#123;</span><br><span class="line">        elements2[n2--] = elements1[n1--];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h2><ul>
+<li>在这里扩容我是按一下规则（newCapacity一开始为原数组容量1.5倍)：<ol>
+<li>newCapacity 少于等于 minCapacity<ul>
+<li>原数组为空,返回DEFAULT_CAPACITY，minCapacity之间最大值</li>
+<li>minCapacity &lt; 0：代表minCapacity超过int整形允许的最大值，也就是发生”overflow”，这是我会让程序不正常地结束。</li>
+<li>无以上情况就返回minCapacity</li>
+</ul>
+</li>
+<li>newCapacity大于minCapacity<ul>
+<li> newCapacity &lt;= MAX_ARRAY_SIZE返回newCapacity</li>
+<li>newCapacity和minCapacity都上溢出了，那么就会终止程序</li>
+<li>newCapacity只要大于MAX_ARRAY_SIZE都会返回<br>MAX_VALUE(你所处平台地int允许最大值)</li>
+<li>不是以上情况(也就是等于MAX_ARRAY_SIZE)，则返回MAX_ARRAY_SIZE。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span>   MAX_VALUE =INT_MAX;						<span class="comment">//int类型最大值</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> MAX_ARRAY_SIZE = MAX_VALUE - <span class="number">8</span>;			<span class="comment">//最大数组容量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line">E* ArrayList&lt;E&gt;::<span class="built_in">grow</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">grow</span>(size + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line">E* ArrayList&lt;E&gt;::<span class="built_in">grow</span>(<span class="keyword">int</span> minCapacity) &#123;</span><br><span class="line">    <span class="keyword">return</span> elements =<span class="built_in">copyOf</span>(</span><br><span class="line">        elements, <span class="built_in">newCapacity</span>(minCapacity)</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line"><span class="keyword">int</span> ArrayList&lt;E&gt;::<span class="built_in">newCapacity</span>(<span class="keyword">int</span> minCapacity) &#123;</span><br><span class="line">    <span class="keyword">int</span> oldCapacity = length;</span><br><span class="line">    <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (newCapacity - minCapacity &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (elements ==EMPTY_ELEMENTDATA)</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">max</span>(DEFAULT_CAPACITY, minCapacity);</span><br><span class="line">        <span class="keyword">if</span> (minCapacity &lt; <span class="number">0</span>) <span class="comment">// overflow</span></span><br><span class="line">        &#123;</span><br><span class="line">            std::cout &lt;&lt; <span class="string">&quot;overflow&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;扩容为:&quot;</span> &lt;&lt; newCapacity &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> minCapacity;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (newCapacity - ArrayList&lt;E&gt;::MAX_ARRAY_SIZE &lt;= <span class="number">0</span>)</span><br><span class="line">        ? newCapacity</span><br><span class="line">        : <span class="built_in">hugeCapacity</span>(minCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line"><span class="keyword">int</span> ArrayList&lt;E&gt;::<span class="built_in">hugeCapacity</span>(<span class="keyword">int</span> minCapacity) &#123;</span><br><span class="line">    <span class="keyword">if</span> (minCapacity &lt; <span class="number">0</span>) <span class="comment">// overflow</span></span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;overflow&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (minCapacity &gt; ArrayList&lt;E&gt;::MAX_ARRAY_SIZE)</span><br><span class="line">        ? ArrayList&lt;E&gt;::MAX_VALUE</span><br><span class="line">        : ArrayList&lt;E&gt;::MAX_ARRAY_SIZE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line">E* ArrayList&lt;E&gt;::<span class="built_in">copyOf</span>(E* elementDate, <span class="keyword">int</span> capacity) &#123;</span><br><span class="line">    E* newelements = <span class="keyword">new</span> E[capacity];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">        newelements[i] = elementDate[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>-&gt;length = capacity;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;数组容量更改为:&quot;</span> &lt;&lt; capacity &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">return</span> newelements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="异常情况"><a href="#异常情况" class="headerlink" title="异常情况"></a>异常情况</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line"><span class="keyword">void</span> ArrayList&lt;E&gt;::<span class="built_in">rangeCheckForAdd</span>(<span class="keyword">int</span> index) &#123;</span><br><span class="line">    <span class="keyword">if</span> (index &gt; size || index &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">outOfBounds</span>(index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line"><span class="keyword">void</span> ArrayList&lt;E&gt;::<span class="built_in">checkIndex</span>(<span class="keyword">int</span> index) &#123;</span><br><span class="line">    <span class="keyword">if</span> (size &lt; <span class="number">0</span>|| index &lt; <span class="number">0</span>|| index &gt;= size) &#123;</span><br><span class="line">        <span class="built_in">outOfBounds</span>(index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> E&gt;</span><br><span class="line"><span class="keyword">void</span> ArrayList&lt;E&gt;::<span class="built_in">outOfBounds</span>(<span class="keyword">int</span> index) &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Index:&quot;</span> &lt;&lt; index &lt;&lt;<span class="string">&quot;,Size:&quot;</span>&lt;&lt;size&lt;&lt;std::endl;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="…"><a href="#…" class="headerlink" title="….."></a>…..</h2>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>xiao chong</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2021/10/14/ArrayList8/">http://example.com/2021/10/14/ArrayList8/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/ArrayList-C/"># ArrayList C++</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/10/14/ArrayList3/">Java_ArrayList源码2</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© xiao chong | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
