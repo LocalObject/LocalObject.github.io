@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiao chong">
+
+
+
+
+
+<title>如何查看类型推断_3 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">xiaochong</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">xiaochong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">如何查看类型推断_3</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">xiao chong</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">December 3, 2021&nbsp;&nbsp;12:05:16</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Template/">Template</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="auto类型推断"><a href="#auto类型推断" class="headerlink" title="auto类型推断"></a>auto类型推断</h1><blockquote>
+<p>auto类型常规推断：用于变量的自动类型推断。</p>
+</blockquote>
+<ul>
+<li>声明变量的时候初始化的类型自动为此选择匹配的类型，不需要程序员显示的指定类型</li>
+</ul>
+<blockquote>
+<p>auto的特点：</p>
+</blockquote>
+<ul>
+<li><p>auto的自动类型推断发生在编译期间</p>
+</li>
+<li><p>auto定义变量必须立即初始化，这样编译器才能推断出它的实际类型，编译器才能确定auto类型以及整个变量的类型然后再编译期间才可以用真正的类型替换掉auto这个类型占位符</p>
+</li>
+<li><p>auto的使用比较灵活，可以和指针、引用、const等限定符结合使用</p>
+</li>
+<li><p>auto推断出来会代表一个具体的类型，auto相当于函数模板类型推断中的参数T</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> x = <span class="number">27</span>;<span class="comment">//auto代表一个类型，x也有一个类型。</span></span><br><span class="line">            <span class="comment">//x=int auto=int</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="传值方式-非指针，非引用"><a href="#传值方式-非指针，非引用" class="headerlink" title="传值方式(非指针，非引用)"></a>传值方式(非指针，非引用)</h2><blockquote>
+<p>auto后面直接接变量名，这叫传值方式</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> x = <span class="number">27</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">auto</span> x2 = x;<span class="comment">//估计x2 = const int ,auto int</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">auto</span>&amp; xy = x;<span class="comment">//这个auto并不是传值方式,估计xy=const int &amp;,auto =int</span></span><br><span class="line"><span class="keyword">auto</span> xy2 = xy;<span class="comment">//估计xy2=int,auto = int</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;x2=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(x2)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;  <span class="comment">//xy=const int</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;xy=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(xy2)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;  <span class="comment">//xy=const int &amp;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;xy2=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(xy2)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;  <span class="comment">//xy2=int</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结传值方式对auto类型：会抛弃引用、const等修饰符</p>
+</blockquote>
+<h2 id="指针或引用类型但不是万能引用"><a href="#指针或引用类型但不是万能引用" class="headerlink" title="指针或引用类型但不是万能引用"></a>指针或引用类型但不是万能引用</h2><blockquote>
+<p>auto后面接一个&amp;</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> x = <span class="number">27</span>;    </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">auto</span>&amp; xy = x;</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span>&amp; xy3 = xy;             <span class="comment">//xy3 = int const &amp;</span></span><br><span class="line"><span class="keyword">auto</span> y = <span class="keyword">new</span> <span class="built_in"><span class="keyword">auto</span></span>(<span class="number">100</span>);     <span class="comment">//y = int*</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">auto</span>* xp = &amp;x;        <span class="comment">//xp = int const *</span></span><br><span class="line"><span class="keyword">auto</span>* xp2 = &amp;x;             <span class="comment">//xp2= int*</span></span><br><span class="line"><span class="keyword">auto</span> xp3 = &amp;x;              <span class="comment">//xp3= int*</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以利用函数模板测</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;boost/type_index.hpp&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc</span><span class="params">(T&amp; tmprv)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-----------------begin------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;T=&quot;</span> &lt;&lt; type_id_with_cvr&lt;T&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;tmprv=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(tmprv)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------------end----------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc2</span><span class="params">(T tmprv)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-----------------begin------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;T=&quot;</span> &lt;&lt; type_id_with_cvr&lt;T&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;tmprv=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(tmprv)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------------end----------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc3</span><span class="params">(<span class="keyword">const</span> T* tmprv)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-----------------begin------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;T=&quot;</span> &lt;&lt; type_id_with_cvr&lt;T&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;tmprv=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(tmprv)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------------end----------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc4</span><span class="params">( T* tmprv)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-----------------begin------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;T=&quot;</span> &lt;&lt; type_id_with_cvr&lt;T&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;tmprv=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(tmprv)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------------end----------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc5</span><span class="params">(T tmprv)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-----------------begin------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;T=&quot;</span> &lt;&lt; type_id_with_cvr&lt;T&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;tmprv=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(tmprv)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------------end----------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">27</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span>&amp; xy = x;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">myfunc</span>(xy);             <span class="comment">//T=int const   tmprv=int const &amp;</span></span><br><span class="line">    <span class="built_in">myfunc2</span>(<span class="keyword">new</span> <span class="built_in"><span class="keyword">int</span></span>(<span class="number">100</span>));  <span class="comment">//T=int *       tmprv=int *</span></span><br><span class="line">    <span class="built_in">myfunc3</span>(&amp;x);            <span class="comment">//T=int         tmprv=int const *</span></span><br><span class="line">    <span class="built_in">myfunc4</span>(&amp;x);            <span class="comment">//T=int         tmprv=int *</span></span><br><span class="line">    <span class="built_in">myfunc5</span>(&amp;x);            <span class="comment">//T=int *       tmprv=int *</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="万能引用类型"><a href="#万能引用类型" class="headerlink" title="万能引用类型"></a>万能引用类型</h2><blockquote>
+<p>与讲解函数模板类型推断万能引用的情形</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> x2 = x;</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span>&amp;&amp; mnyy0 = <span class="number">222</span>;<span class="comment">//222是右值，auto = int，mnyy0= int &amp;&amp;(右值引用)</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;mnyy0 =&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(mnyy0)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl; <span class="comment">//mnyy0 =int &amp;&amp;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span>&amp;&amp; mnyy1 = x;   <span class="comment">//auto = int&amp;  mnyy1 = int&amp;</span></span><br><span class="line"><span class="keyword">auto</span>&amp;&amp; mnyy2 = x2;  <span class="comment">//auto = int const&amp; mnyy2 = int const &amp;</span></span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>xiao chong</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2021/12/03/Type-inference3/">http://example.com/2021/12/03/Type-inference3/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Type-inference/"># Type inference</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/12/03/Type-inference2/">如何查看类型推断_2</a>
+            
+            
+            <a class="next" rel="next" href="/2021/12/03/Universal-reference/">万能引用universal reference</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© xiao chong | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

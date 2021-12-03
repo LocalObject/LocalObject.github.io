@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="xiao chong">
+
+
+
+
+
+<title>如何查看类型推断_2 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">xiaochong</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">xiaochong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">如何查看类型推断_2</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">xiao chong</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">December 3, 2021&nbsp;&nbsp;12:05:16</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Template/">Template</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="万能引用类型"><a href="#万能引用类型" class="headerlink" title="万能引用类型"></a>万能引用类型</h1><blockquote>
+<p>从上一章如何查看类型推断中，我们发现经过模板的类型推导，T的类型是不完整的，我们想得到完全的类型</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc</span><span class="params">(T&amp;&amp; tmprv)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-----------------begin------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;T=&quot;</span> &lt;&lt; type_id_with_cvr&lt;T&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;tmprv=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(tmprv)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------------end----------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">18</span>;         <span class="comment">//i的类型是int</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> j = i;    <span class="comment">//j的类型是const int</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; k = i;   <span class="comment">//k的类型是const int&amp;</span></span><br><span class="line"><span class="built_in">myfunc</span>(i);          <span class="comment">//T=int&amp; ,tmprv=int&amp;</span></span><br><span class="line"><span class="built_in">myfunc</span>(j);          <span class="comment">//T= int const&amp;,tmprv =int const &amp;</span></span><br><span class="line"><span class="built_in">myfunc</span>(k);          <span class="comment">//T=int const &amp; tmprv=int const &amp;</span></span><br><span class="line"><span class="built_in">myfunc</span>(<span class="number">100</span>);        <span class="comment">//T=int tmprv=int&amp;&amp;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="传值方式"><a href="#传值方式" class="headerlink" title="传值方式"></a>传值方式</h2><blockquote>
+<p>如果实参是引用类型，则引用类型会被忽略，T不会被推导为引用类型</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc2</span><span class="params">(T tmprv)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-----------------begin------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;T=&quot;</span> &lt;&lt; type_id_with_cvr&lt;T&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;tmprv=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(tmprv)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------------end----------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">18</span>;        <span class="comment">//i的类型是int</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> j = i;    <span class="comment">//j的类型是const int</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; k = i;   <span class="comment">//k的类型是const int&amp;</span></span><br><span class="line"><span class="built_in">myfunc2</span>(i);         <span class="comment">//T=int tmprv=int</span></span><br><span class="line"><span class="built_in">myfunc2</span>(j);         <span class="comment">//T=int tmprv=int</span></span><br><span class="line"><span class="built_in">myfunc2</span>(k);         <span class="comment">//T=int tmprv=int</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果实参是引用类型，则引用类型会被忽略，T不会被推导为引用类型，除非手工引用类型(不建议这样写)</span></span><br><span class="line"><span class="keyword">int</span>&amp; m = i;</span><br><span class="line"><span class="built_in">myfunc2</span>(m);</span><br><span class="line">myfunc2&lt;<span class="keyword">int</span>&amp;&gt;(m);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>若实参是const，则const会被忽略，T不会被推导为const类型(毕竟产生的是新副本)</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> mystr[] = <span class="string">&quot;I Love China&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* <span class="keyword">const</span> p = mystr;</span><br><span class="line"><span class="comment">//第一个const表示p指向的目标中的内容不能通过p改变</span></span><br><span class="line"><span class="comment">//第二个const表示p指向一个内容后，p不可再指向其他的内容（p不可以指向不同内容）</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">myfunc2</span>(p);<span class="comment">//T=char const *，tmprv=char const*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这表示进入到函数模板内部后，tmprv指向的内容不能通过tmprv改变，但是tmprv可以指向其他内存地址</span></span><br><span class="line"><span class="comment">//也就是tmprv(p)的常量性被忽略了，二tmprv(p)所指向的内容的常量性会被保留</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结论：如果传递的是const char* 或者const char[]，这个const会被保留</p>
+</blockquote>
+<hr>
+<h2 id="传值方式的引申–std-ref与std-cref"><a href="#传值方式的引申–std-ref与std-cref" class="headerlink" title="传值方式的引申–std::ref与std::cref"></a>传值方式的引申–std::ref与std::cref</h2><blockquote>
+<p>当函数模板定义中使用传值方式，可以通过std::ref和std:;cref引用方式传递参数</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc3</span><span class="params">(T tmprv)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-----------------begin------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;T=&quot;</span> &lt;&lt; type_id_with_cvr&lt;T&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;tmprv=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(tmprv)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------------end----------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">int</span>&amp; tmpvaluec = tmprv;</span><br><span class="line">    tmpvaluec = <span class="number">1200</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> m = <span class="number">180</span>;</span><br><span class="line"><span class="built_in">myfunc3</span>(std::<span class="built_in">ref</span>(m));<span class="comment">//std::ref和std::cref像对象包装器,编译器通过创建一个class std::reference_wrapper&lt;T&gt;类型的对象</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;m=&quot;</span> &lt;&lt; m &lt;&lt; endl;  <span class="comment">//m=1800</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="数组做实参"><a href="#数组做实参" class="headerlink" title="数组做实参"></a>数组做实参</h2><blockquote>
+<p>用数组名作为实参传递，通常情况下会退化为指针</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc4</span><span class="params">(T tmprv)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-----------------begin------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;T=&quot;</span> &lt;&lt; type_id_with_cvr&lt;T&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;tmprv=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(tmprv)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------------end----------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> mystr[] = <span class="string">&quot;l love china&quot;</span>;</span><br><span class="line"><span class="built_in">myfunc4</span>(mystr);     <span class="comment">//T=char const* tmprv=char const*</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如何得到完整的类型,一个数组，其大小都属于数组类型一部分</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc5</span><span class="params">(T&amp; tmprv)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-----------------begin------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;T=&quot;</span> &lt;&lt; type_id_with_cvr&lt;T&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;tmprv=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(tmprv)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------------end----------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> mystr[] = <span class="string">&quot;l love china&quot;</span>;</span><br><span class="line"><span class="built_in">myfunc5</span>(mystr); <span class="comment">//T = char const [13]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如何得到数组大小</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">unsigned</span> L1&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc6</span><span class="params">(T(&amp; tmprv)[L1])</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-----------------begin------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;T=&quot;</span> &lt;&lt; type_id_with_cvr&lt;T&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;tmprv=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(tmprv)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------------end----------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; L1 &lt;&lt; endl;<span class="comment">//13</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> mystr[] = <span class="string">&quot;l love china&quot;</span>;</span><br><span class="line"><span class="comment">//tmprv = char const (&amp;)[13]    --(&amp;)代表数组的一个引用</span></span><br><span class="line"><span class="built_in">myfunc6</span>(mystr);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="函数名做实参"><a href="#函数名做实参" class="headerlink" title="函数名做实参"></a>函数名做实参</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc7</span><span class="params">(T tmprv)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-----------------begin------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;T=&quot;</span> &lt;&lt; type_id_with_cvr&lt;T&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;tmprv=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(tmprv)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------------end----------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">myfunc7</span>(testFunc);</span><br><span class="line"><span class="comment">//T = void __cdecl(void)</span></span><br><span class="line"><span class="comment">//tmprv = void(__cdecl&amp;)(void)--tmprv是一个函数引用类型</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="初始化列表做实参"><a href="#初始化列表做实参" class="headerlink" title="初始化列表做实参"></a>初始化列表做实参</h2><blockquote>
+<p>利用#include<initializer_list></initializer_list></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunc9</span><span class="params">(std::initializer_list&lt;T&gt; tmprv)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-----------------begin------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">using</span> boost::typeindex::type_id_with_cvr;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;T=&quot;</span> &lt;&lt; type_id_with_cvr&lt;T&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;tmprv=&quot;</span> &lt;&lt; type_id_with_cvr&lt;<span class="keyword">decltype</span>(tmprv)&gt;().<span class="built_in">pretty_name</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------------end----------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">myfunc9</span>(&#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span> &#125;);</span><br><span class="line"><span class="comment">//T = int</span></span><br><span class="line"><span class="comment">//tmprv = class std::initializer_list&lt;int&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结</p>
+</blockquote>
+<ol>
+<li><p>推断中，引用类型实参的引用类型等于不存在</p>
+</li>
+<li><p>万能引用，实参为左值或者右值，推断结果不一样</p>
+</li>
+<li><p>按值传递的实参，传递给形参时const属性不起作用，但传递是引用则另当当别论</p>
+</li>
+<li><p>数组或者函数类型再类型推断中会被看做是指针，除非函数模板的形参是引用。</p>
+</li>
+<li><p>初始化列表不能直接推断成std::initializer_list<T>，必须在函数模板中明确这种类型</T></p>
+</li>
+</ol>
+<hr>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>xiao chong</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2021/12/03/Type-inference2/">http://example.com/2021/12/03/Type-inference2/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Type-inference/"># Type inference</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/12/03/Type-inference/">如何查看类型推断_1</a>
+            
+            
+            <a class="next" rel="next" href="/2021/12/03/Type-inference3/">如何查看类型推断_3</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© xiao chong | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
